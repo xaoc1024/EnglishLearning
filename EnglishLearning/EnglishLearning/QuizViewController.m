@@ -18,7 +18,7 @@ static NSString* const kTopCellIdentifier = @"WordsQuizTableViewCellIdentifier";
 static NSString* const kAnswersCellIdentifier = @"AnswersTableViewCellIdentifier";
 static NSString* const kAnswersButtonCellIdentifier = @"AnswerButtonCellIdentifier";
 
-@interface QuizViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface QuizViewController ()<UITableViewDataSource, UITableViewDelegate, AnswerButtonCellDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *quizTableView;
 @property (nonatomic, strong) NSArray* wordsArray;
@@ -27,6 +27,8 @@ static NSString* const kAnswersButtonCellIdentifier = @"AnswerButtonCellIdentifi
 
 @property (nonatomic, assign) NSUInteger correctWordIndex;
 @property (nonatomic, strong) NSMutableArray* wordNumbersArray;
+
+@property (nonatomic, strong) NSIndexPath* selectedIndexPath;
 
 @end
 
@@ -37,6 +39,7 @@ static NSString* const kAnswersButtonCellIdentifier = @"AnswerButtonCellIdentifi
     [super viewDidLoad];
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.model = appDelegate.model;
+    [self.model setupModelWithWord];
     
     [self.quizTableView registerNib:[UINib nibWithNibName:@"AnswersTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:kAnswersCellIdentifier];
     
@@ -65,7 +68,7 @@ static NSString* const kAnswersButtonCellIdentifier = @"AnswerButtonCellIdentifi
     
     while (self.wordNumbersArray.count < 4)
     {
-        NSNumber* randomNumber = @(random() % self.wordsArray.count);
+        NSNumber* randomNumber = @(arc4random() % self.wordsArray.count);
         BOOL exists = NO;
         
         for (NSNumber* previousNumber in self.wordNumbersArray)
@@ -88,8 +91,10 @@ static NSString* const kAnswersButtonCellIdentifier = @"AnswerButtonCellIdentifi
         [self.answersArray addObject:self.wordsArray[number.integerValue]];
     }
     
-    NSInteger randowQuestionWordNumber = random() % 4;
+    NSInteger randowQuestionWordNumber = arc4random() % 4;
     self.questionWord = self.answersArray[randowQuestionWordNumber];
+    [self.quizTableView reloadData];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -140,13 +145,14 @@ static NSString* const kAnswersButtonCellIdentifier = @"AnswerButtonCellIdentifi
         Word* word = self.answersArray[indexPath.row];
         
         AnswersTableViewCell* theCell = [tableView dequeueReusableCellWithIdentifier:kAnswersCellIdentifier forIndexPath:indexPath];
-        
+        [theCell resetAppearance];
         theCell.answerLabel.text = word.translatedWord;
         cell = theCell;
     }
     else
     {
         AnswerButtonCell* buttonCell = [tableView dequeueReusableCellWithIdentifier:kAnswersButtonCellIdentifier forIndexPath:indexPath];
+        buttonCell.delegate = self;
         cell = buttonCell;
     }
     
@@ -155,13 +161,47 @@ static NSString* const kAnswersButtonCellIdentifier = @"AnswerButtonCellIdentifi
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    if (indexPath.section == 2)
+    if (indexPath.section == 1)
     {
-        [self prepareNextQuestions];
-        [tableView reloadData];
+        AnswersTableViewCell* cell = [tableView cellForRowAtIndexPath:self.selectedIndexPath];
+        cell.answerIsSelected = NO;
+        
+        cell = [tableView cellForRowAtIndexPath:indexPath];
+        cell.answerIsSelected = YES;
+        self.selectedIndexPath = indexPath;
     }
+}
+
+- (void)anserCellDidTapCheckButton:(AnswerButtonCell*)theCell
+{
+    if (self.selectedIndexPath != nil)
+    {
+        AnswersTableViewCell* cell = [self.quizTableView cellForRowAtIndexPath:self.selectedIndexPath];
+        NSInteger correctIndex = [self.answersArray indexOfObject:self.questionWord];
+        
+        [cell animateBackgroundForCorrectAnswer:correctIndex == self.selectedIndexPath.row];
+        
+        NSIndexPath* correctIndexPath = [NSIndexPath indexPathForRow:correctIndex inSection:1];
+        cell = [self.quizTableView cellForRowAtIndexPath:correctIndexPath];
+        [cell animateBackgroundForCorrectAnswer:YES];
+        
+        self.quizTableView.userInteractionEnabled = NO;
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.quizTableView.userInteractionEnabled = YES;
+            [self prepareNextQuestions];
+        });
+    }
+}
+
+- (NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0 || indexPath.section == 2)
+    {
+        return nil;
+    }
+    
+    return indexPath;
 }
 
 @end

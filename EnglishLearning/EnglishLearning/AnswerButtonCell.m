@@ -13,5 +13,9 @@
 - (void)awakeFromNib {
     // Initialization code
 }
+- (IBAction)checkButtonAction:(id)sender
+{
+    [self.delegate anserCellDidTapCheckButton:self];
+}
 
 @end

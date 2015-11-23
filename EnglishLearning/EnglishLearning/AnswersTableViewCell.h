@@ -12,6 +12,10 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *answerLabel;
 
-@property (strong, nonatomic) IBOutlet UIImageView *stateImage;
+@property (nonatomic, assign) BOOL answerIsSelected;
+
+- (void)animateBackgroundForCorrectAnswer:(BOOL)correctAnswer;
+
+- (void)resetAppearance;
 
 @end

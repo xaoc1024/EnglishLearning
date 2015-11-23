@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class AnswerButtonCell;
+
+@protocol AnswerButtonCellDelegate <NSObject>
+
+- (void)anserCellDidTapCheckButton:(AnswerButtonCell*)theCell;
+
+@end
+
 @interface AnswerButtonCell : UITableViewCell
+
+@property (nonatomic, weak) id <AnswerButtonCellDelegate> delegate;
 
 @end

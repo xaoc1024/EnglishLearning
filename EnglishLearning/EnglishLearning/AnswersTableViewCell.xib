@@ -8,41 +8,44 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnswersTableViewCellIdentifier" rowHeight="64" id="Lpp-Wf-wmf" customClass="AnswersTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AnswersTableViewCellIdentifier" id="Lpp-Wf-wmf" customClass="AnswersTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lpp-Wf-wmf" id="hvO-1a-m0h">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="63.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RPd-aW-gnl">
-                        <rect key="frame" x="12" y="22" width="20" height="20"/>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="253" verticalHuggingPriority="253" horizontalCompressionResistancePriority="753" verticalCompressionResistancePriority="753" translatesAutoresizingMaskIntoConstraints="NO" id="5rh-SQ-cWC">
+                        <rect key="frame" x="8" y="8" width="296" height="69"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="20" id="LBg-Ls-Clr"/>
-                            <constraint firstAttribute="height" constant="20" id="wDC-QF-jHV"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="tGb-c4-bCr"/>
                         </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ZE-ml-C2d">
-                        <rect key="frame" x="52" y="22" width="250" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ZE-ml-C2d">
+                        <rect key="frame" x="16" y="4" width="288" height="77"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="RPd-aW-gnl" firstAttribute="leading" secondItem="hvO-1a-m0h" secondAttribute="leading" constant="12" id="5DI-Lh-369"/>
-                    <constraint firstItem="RPd-aW-gnl" firstAttribute="centerY" secondItem="hvO-1a-m0h" secondAttribute="centerY" id="N7H-q7-odN"/>
-                    <constraint firstItem="1ZE-ml-C2d" firstAttribute="top" secondItem="hvO-1a-m0h" secondAttribute="top" constant="22" id="c4i-OT-ju0"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="1ZE-ml-C2d" secondAttribute="trailing" constant="10" id="d7u-0s-mvp"/>
-                    <constraint firstItem="1ZE-ml-C2d" firstAttribute="leading" secondItem="RPd-aW-gnl" secondAttribute="trailing" constant="20" id="krA-R0-sSb"/>
-                    <constraint firstAttribute="bottom" secondItem="1ZE-ml-C2d" secondAttribute="bottom" constant="20.5" id="q3G-Gk-CEW"/>
+                    <constraint firstItem="5rh-SQ-cWC" firstAttribute="leading" secondItem="hvO-1a-m0h" secondAttribute="leading" constant="8" id="6H2-mT-nHb"/>
+                    <constraint firstAttribute="bottom" secondItem="1ZE-ml-C2d" secondAttribute="bottom" constant="4" id="FA7-7F-0TR"/>
+                    <constraint firstItem="1ZE-ml-C2d" firstAttribute="top" secondItem="hvO-1a-m0h" secondAttribute="top" constant="4" id="O3I-uP-u3f"/>
+                    <constraint firstItem="1ZE-ml-C2d" firstAttribute="leading" secondItem="hvO-1a-m0h" secondAttribute="leading" constant="16" id="V1V-Yt-g9n"/>
+                    <constraint firstItem="1ZE-ml-C2d" firstAttribute="centerY" secondItem="hvO-1a-m0h" secondAttribute="centerY" id="Zwm-p0-BHa"/>
+                    <constraint firstAttribute="bottom" secondItem="5rh-SQ-cWC" secondAttribute="bottom" constant="8" id="fHr-j6-fG0"/>
+                    <constraint firstItem="5rh-SQ-cWC" firstAttribute="top" secondItem="hvO-1a-m0h" secondAttribute="top" constant="8" id="i3w-FP-aqh"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="1ZE-ml-C2d" secondAttribute="trailing" constant="8" id="rR1-rQ-ZsU"/>
+                    <constraint firstAttribute="trailing" secondItem="5rh-SQ-cWC" secondAttribute="trailing" constant="16" id="vjV-iw-P6h"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="answerLabel" destination="1ZE-ml-C2d" id="7QU-sQ-zfj"/>
-                <outlet property="stateImage" destination="RPd-aW-gnl" id="RaE-Uv-kFh"/>
+                <outlet property="borderedBackgroundView" destination="1ZE-ml-C2d" id="R5o-gN-2qq"/>
             </connections>
-            <point key="canvasLocation" x="370" y="265"/>
+            <point key="canvasLocation" x="370" y="276"/>
         </tableViewCell>
     </objects>
 </document>
