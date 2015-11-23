@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="14F27" minimumToolsVersion="Automatic">
+    <entity name="Word" representedClassName="Word" syncable="YES">
+        <attribute name="identifier" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="originalWord" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="translatedWord" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="trnascrption" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Word" positionX="-63" positionY="-18" width="128" height="105"/>
+    </elements>
+</model>
