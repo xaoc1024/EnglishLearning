@@ -25,7 +25,6 @@ static NSString* const kAnswersButtonCellIdentifier = @"AnswerButtonCellIdentifi
 @property (nonatomic, strong) NSMutableArray* answersArray;
 @property (nonatomic, strong) Word* questionWord;
 
-@property (nonatomic, assign) NSUInteger correctWordIndex;
 @property (nonatomic, strong) NSMutableArray* wordNumbersArray;
 
 @property (nonatomic, strong) NSIndexPath* selectedIndexPath;
@@ -65,6 +64,7 @@ static NSString* const kAnswersButtonCellIdentifier = @"AnswerButtonCellIdentifi
 {
     self.wordNumbersArray = [NSMutableArray array];
     self.answersArray = [NSMutableArray array];
+    self.selectedIndexPath = nil;
     
     while (self.wordNumbersArray.count < 4)
     {
@@ -171,6 +171,15 @@ static NSString* const kAnswersButtonCellIdentifier = @"AnswerButtonCellIdentifi
         self.selectedIndexPath = indexPath;
     }
 }
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    if (section == 2)
+//    {
+//        return 20;
+//    }
+//    return 10;
+//}
 
 - (void)anserCellDidTapCheckButton:(AnswerButtonCell*)theCell
 {

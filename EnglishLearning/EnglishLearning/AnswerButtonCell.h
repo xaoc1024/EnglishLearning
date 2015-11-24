@@ -19,5 +19,6 @@
 @interface AnswerButtonCell : UITableViewCell
 
 @property (nonatomic, weak) id <AnswerButtonCellDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIButton *checkButton;
 
 @end

@@ -10,8 +10,12 @@
 
 @implementation AnswerButtonCell
 
-- (void)awakeFromNib {
-    // Initialization code
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.checkButton.layer.borderColor = [UIColor blackColor].CGColor;
+    self.checkButton.layer.borderWidth = 2;
+    
 }
 - (IBAction)checkButtonAction:(id)sender
 {

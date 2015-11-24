@@ -120,7 +120,7 @@
             continue;
         }
         
-        NSArray *elements = [line componentsSeparatedByString:@","];
+        NSArray *elements = [line componentsSeparatedByString:@";"];
         
         NSString* originalWord = elements[1]; //original word
         
