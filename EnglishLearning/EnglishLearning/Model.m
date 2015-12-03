@@ -8,17 +8,57 @@
 
 #import "Model.h"
 #import "Word.h"
+#import "User.h"
 
 @interface Model ()
 
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+@property (nonatomic, strong) User* user;
+
 - (NSURL *)applicationDocumentsDirectory;
 
 @end
 
 @implementation Model
+
+- (id)init
+{
+    self = [super init];
+    
+    if (self != nil)
+    {
+        [self createUser];
+    }
+    return self;
+}
+
+- (void)createUser
+{
+    NSFetchRequest* userRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([User class])];
+    NSError* error = nil;
+    NSArray* fetchResult = [self.managedObjectContext executeFetchRequest:userRequest error:&error];
+    
+    if (error == nil)
+    {
+        if (fetchResult.count > 0)
+        {
+            self.user = fetchResult.lastObject;
+        }
+        else
+        {
+            self.user = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([User class]) inManagedObjectContext:self.managedObjectContext];
+            self.user.identifier = [[NSUUID UUID] UUIDString];
+            [self saveContext];
+        }
+    }
+    else
+    {
+        NSLog(@"Error. Cannot find user. %@", error.userInfo);
+        abort();
+    }
+}
 
 #pragma mark - Core Data stack
 
@@ -105,6 +145,7 @@
 - (void)setupModelWithWord
 {
     NSError* error = nil;
+    
     NSString *csvFileString= [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"EnglishWords" withExtension:@"csv"] encoding:NSUTF8StringEncoding  error:&error];
     
     NSArray *allLines = [csvFileString componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
@@ -129,6 +170,7 @@
         {
             [allWords enumerateObjectsUsingBlock:^(id object, BOOL* stop) {
                 Word* wordObject = object;
+                
                 if ([wordObject.originalWord isEqualToString:originalWord])
                 {
                     word = wordObject;
@@ -152,6 +194,8 @@
             word.trnascrption = elements[2];
             
             word.translatedWord = elements[3];
+            
+            word.user = self.user;
         }
     }
     

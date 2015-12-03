@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C0F47271C0A0B310053B22F /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0F47241C0A0B310053B22F /* Word.m */; };
+		5C0F47281C0A0B310053B22F /* Word+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0F47261C0A0B310053B22F /* Word+CoreDataProperties.m */; };
 		5CAF68E61C00ACAF00795AD0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF68E51C00ACAF00795AD0 /* main.m */; };
 		5CAF68E91C00ACAF00795AD0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF68E81C00ACAF00795AD0 /* AppDelegate.m */; };
 		5CAF68EC1C00ACAF00795AD0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF68EB1C00ACAF00795AD0 /* ViewController.m */; };
@@ -18,8 +20,6 @@
 		5CAF690D1C00ACB000795AD0 /* EnglishLearningUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF690C1C00ACB000795AD0 /* EnglishLearningUITests.m */; };
 		5CAF691F1C00BEDE00795AD0 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF691E1C00BEDE00795AD0 /* Model.m */; };
 		5CAF69211C00C86000795AD0 /* EnglishWords.csv in Resources */ = {isa = PBXBuildFile; fileRef = 5C19E3E81C00C3BB0088DE11 /* EnglishWords.csv */; };
-		5CAF69261C00CEDF00795AD0 /* Word+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF69231C00CEDF00795AD0 /* Word+CoreDataProperties.m */; };
-		5CAF69271C00CEDF00795AD0 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF69251C00CEDF00795AD0 /* Word.m */; };
 		5CAF692F1C021EDC00795AD0 /* WordsQuizTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF692D1C021EDC00795AD0 /* WordsQuizTopTableViewCell.m */; };
 		5CAF69301C021EDC00795AD0 /* WordsQuizTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CAF692E1C021EDC00795AD0 /* WordsQuizTopTableViewCell.xib */; };
 		5CAF69351C021F4F00795AD0 /* AnswersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF69341C021F4F00795AD0 /* AnswersTableViewCell.m */; };
@@ -27,6 +27,13 @@
 		5CAF693B1C022A5800795AD0 /* QuizViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF693A1C022A5800795AD0 /* QuizViewController.m */; };
 		5CC783B11C025188005AD1E3 /* AnswerButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC783AF1C025188005AD1E3 /* AnswerButtonCell.m */; };
 		5CC783B21C025188005AD1E3 /* AnswerButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CC783B01C025188005AD1E3 /* AnswerButtonCell.xib */; };
+		5CDC36221C0A0D1C00BD21EE /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDC361F1C0A0D1C00BD21EE /* User+CoreDataProperties.m */; };
+		5CDC36231C0A0D1C00BD21EE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDC36211C0A0D1C00BD21EE /* User.m */; };
+		5CDC36291C0A0DB700BD21EE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CDC36281C0A0DB600BD21EE /* QuartzCore.framework */; };
+		5CDC362B1C0A0DBD00BD21EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CDC362A1C0A0DBD00BD21EE /* CoreGraphics.framework */; };
+		5CDC362F1C0A113000BD21EE /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDC362E1C0A113000BD21EE /* HomeViewController.m */; };
+		5CDC36341C0A137A00BD21EE /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDC36321C0A137A00BD21EE /* HomeTableViewCell.m */; };
+		5CDC36351C0A137A00BD21EE /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC36331C0A137A00BD21EE /* HomeTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +54,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5C0F47231C0A0B310053B22F /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Word.h; path = Models/Word/Word.h; sourceTree = "<group>"; };
+		5C0F47241C0A0B310053B22F /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Word.m; path = Models/Word/Word.m; sourceTree = "<group>"; };
+		5C0F47251C0A0B310053B22F /* Word+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Word+CoreDataProperties.h"; path = "Models/Word/Word+CoreDataProperties.h"; sourceTree = "<group>"; };
+		5C0F47261C0A0B310053B22F /* Word+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Word+CoreDataProperties.m"; path = "Models/Word/Word+CoreDataProperties.m"; sourceTree = "<group>"; };
 		5C19E3E81C00C3BB0088DE11 /* EnglishWords.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EnglishWords.csv; sourceTree = "<group>"; };
 		5CAF68E11C00ACAF00795AD0 /* EnglishLearning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnglishLearning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CAF68E51C00ACAF00795AD0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -67,10 +78,6 @@
 		5CAF690E1C00ACB000795AD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5CAF691D1C00BEDE00795AD0 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		5CAF691E1C00BEDE00795AD0 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
-		5CAF69221C00CEDF00795AD0 /* Word+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Word+CoreDataProperties.h"; sourceTree = "<group>"; };
-		5CAF69231C00CEDF00795AD0 /* Word+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Word+CoreDataProperties.m"; sourceTree = "<group>"; };
-		5CAF69241C00CEDF00795AD0 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
-		5CAF69251C00CEDF00795AD0 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
 		5CAF692C1C021EDC00795AD0 /* WordsQuizTopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordsQuizTopTableViewCell.h; sourceTree = "<group>"; };
 		5CAF692D1C021EDC00795AD0 /* WordsQuizTopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordsQuizTopTableViewCell.m; sourceTree = "<group>"; };
 		5CAF692E1C021EDC00795AD0 /* WordsQuizTopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordsQuizTopTableViewCell.xib; sourceTree = "<group>"; };
@@ -82,6 +89,17 @@
 		5CC783AE1C025188005AD1E3 /* AnswerButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerButtonCell.h; sourceTree = "<group>"; };
 		5CC783AF1C025188005AD1E3 /* AnswerButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerButtonCell.m; sourceTree = "<group>"; };
 		5CC783B01C025188005AD1E3 /* AnswerButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerButtonCell.xib; sourceTree = "<group>"; };
+		5CDC361E1C0A0D1C00BD21EE /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "User+CoreDataProperties.h"; path = "Models/User/User+CoreDataProperties.h"; sourceTree = "<group>"; };
+		5CDC361F1C0A0D1C00BD21EE /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "User+CoreDataProperties.m"; path = "Models/User/User+CoreDataProperties.m"; sourceTree = "<group>"; };
+		5CDC36201C0A0D1C00BD21EE /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Models/User/User.h; sourceTree = "<group>"; };
+		5CDC36211C0A0D1C00BD21EE /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Models/User/User.m; sourceTree = "<group>"; };
+		5CDC36281C0A0DB600BD21EE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5CDC362A1C0A0DBD00BD21EE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5CDC362D1C0A113000BD21EE /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		5CDC362E1C0A113000BD21EE /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		5CDC36311C0A137A00BD21EE /* HomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewCell.h; sourceTree = "<group>"; };
+		5CDC36321C0A137A00BD21EE /* HomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewCell.m; sourceTree = "<group>"; };
+		5CDC36331C0A137A00BD21EE /* HomeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +107,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CDC362B1C0A0DBD00BD21EE /* CoreGraphics.framework in Frameworks */,
+				5CDC36291C0A0DB700BD21EE /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				5CAF68E31C00ACAF00795AD0 /* EnglishLearning */,
+				5CDC362C1C0A0DC300BD21EE /* Frameworks */,
 				5CAF69001C00ACB000795AD0 /* EnglishLearningTests */,
 				5CAF690B1C00ACB000795AD0 /* EnglishLearningUITests */,
 				5CAF68E21C00ACAF00795AD0 /* Products */,
@@ -134,10 +155,7 @@
 			children = (
 				5CAF68E71C00ACAF00795AD0 /* AppDelegate.h */,
 				5CAF68E81C00ACAF00795AD0 /* AppDelegate.m */,
-				5CAF68EA1C00ACAF00795AD0 /* ViewController.h */,
-				5CAF68EB1C00ACAF00795AD0 /* ViewController.m */,
-				5CAF69391C022A5800795AD0 /* QuizViewController.h */,
-				5CAF693A1C022A5800795AD0 /* QuizViewController.m */,
+				5CDC36301C0A12CE00BD21EE /* ViewControllers */,
 				5CAF69311C021EE100795AD0 /* TableViewCell */,
 				5CAF69201C00BEE300795AD0 /* Model */,
 				5CAF68ED1C00ACAF00795AD0 /* Main.storyboard */,
@@ -190,6 +208,7 @@
 			children = (
 				5CAF691D1C00BEDE00795AD0 /* Model.h */,
 				5CAF691E1C00BEDE00795AD0 /* Model.m */,
+				5CDC36241C0A0D2900BD21EE /* User */,
 				5CAF69281C00CEEA00795AD0 /* Word */,
 			);
 			name = Model;
@@ -198,10 +217,10 @@
 		5CAF69281C00CEEA00795AD0 /* Word */ = {
 			isa = PBXGroup;
 			children = (
-				5CAF69221C00CEDF00795AD0 /* Word+CoreDataProperties.h */,
-				5CAF69231C00CEDF00795AD0 /* Word+CoreDataProperties.m */,
-				5CAF69241C00CEDF00795AD0 /* Word.h */,
-				5CAF69251C00CEDF00795AD0 /* Word.m */,
+				5C0F47231C0A0B310053B22F /* Word.h */,
+				5C0F47241C0A0B310053B22F /* Word.m */,
+				5C0F47251C0A0B310053B22F /* Word+CoreDataProperties.h */,
+				5C0F47261C0A0B310053B22F /* Word+CoreDataProperties.m */,
 			);
 			name = Word;
 			sourceTree = "<group>";
@@ -210,8 +229,9 @@
 			isa = PBXGroup;
 			children = (
 				5CAF69321C021EF800795AD0 /* TopQuizCell */,
-				5CC783B31C02518C005AD1E3 /* AnswerButtonCell */,
 				5CAF69361C021F5500795AD0 /* AnswersTableViewCell */,
+				5CC783B31C02518C005AD1E3 /* AnswerButtonCell */,
+				5CDC36361C0A137D00BD21EE /* HomeTableViewCell */,
 			);
 			name = TableViewCell;
 			sourceTree = "<group>";
@@ -244,6 +264,49 @@
 				5CC783B01C025188005AD1E3 /* AnswerButtonCell.xib */,
 			);
 			name = AnswerButtonCell;
+			sourceTree = "<group>";
+		};
+		5CDC36241C0A0D2900BD21EE /* User */ = {
+			isa = PBXGroup;
+			children = (
+				5CDC361E1C0A0D1C00BD21EE /* User+CoreDataProperties.h */,
+				5CDC361F1C0A0D1C00BD21EE /* User+CoreDataProperties.m */,
+				5CDC36201C0A0D1C00BD21EE /* User.h */,
+				5CDC36211C0A0D1C00BD21EE /* User.m */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		5CDC362C1C0A0DC300BD21EE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5CDC362A1C0A0DBD00BD21EE /* CoreGraphics.framework */,
+				5CDC36281C0A0DB600BD21EE /* QuartzCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5CDC36301C0A12CE00BD21EE /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5CDC362D1C0A113000BD21EE /* HomeViewController.h */,
+				5CDC362E1C0A113000BD21EE /* HomeViewController.m */,
+				5CAF68EA1C00ACAF00795AD0 /* ViewController.h */,
+				5CAF68EB1C00ACAF00795AD0 /* ViewController.m */,
+				5CAF69391C022A5800795AD0 /* QuizViewController.h */,
+				5CAF693A1C022A5800795AD0 /* QuizViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		5CDC36361C0A137D00BD21EE /* HomeTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				5CDC36311C0A137A00BD21EE /* HomeTableViewCell.h */,
+				5CDC36321C0A137A00BD21EE /* HomeTableViewCell.m */,
+				5CDC36331C0A137A00BD21EE /* HomeTableViewCell.xib */,
+			);
+			name = HomeTableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,6 +415,7 @@
 			files = (
 				5CAF68F71C00ACAF00795AD0 /* LaunchScreen.storyboard in Resources */,
 				5CAF68F41C00ACAF00795AD0 /* Assets.xcassets in Resources */,
+				5CDC36351C0A137A00BD21EE /* HomeTableViewCell.xib in Resources */,
 				5CAF68EF1C00ACAF00795AD0 /* Main.storyboard in Resources */,
 				5CAF69381C021F8000795AD0 /* AnswersTableViewCell.xib in Resources */,
 				5CAF69211C00C86000795AD0 /* EnglishWords.csv in Resources */,
@@ -381,16 +445,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CDC36231C0A0D1C00BD21EE /* User.m in Sources */,
 				5CAF68EC1C00ACAF00795AD0 /* ViewController.m in Sources */,
+				5CDC36341C0A137A00BD21EE /* HomeTableViewCell.m in Sources */,
 				5CAF693B1C022A5800795AD0 /* QuizViewController.m in Sources */,
 				5CAF68E91C00ACAF00795AD0 /* AppDelegate.m in Sources */,
 				5CAF68F21C00ACAF00795AD0 /* EnglishLearning.xcdatamodeld in Sources */,
+				5CDC362F1C0A113000BD21EE /* HomeViewController.m in Sources */,
 				5CAF68E61C00ACAF00795AD0 /* main.m in Sources */,
+				5C0F47271C0A0B310053B22F /* Word.m in Sources */,
+				5CDC36221C0A0D1C00BD21EE /* User+CoreDataProperties.m in Sources */,
 				5CAF692F1C021EDC00795AD0 /* WordsQuizTopTableViewCell.m in Sources */,
 				5CAF69351C021F4F00795AD0 /* AnswersTableViewCell.m in Sources */,
+				5C0F47281C0A0B310053B22F /* Word+CoreDataProperties.m in Sources */,
 				5CAF691F1C00BEDE00795AD0 /* Model.m in Sources */,
-				5CAF69261C00CEDF00795AD0 /* Word+CoreDataProperties.m in Sources */,
-				5CAF69271C00CEDF00795AD0 /* Word.m in Sources */,
 				5CC783B11C025188005AD1E3 /* AnswerButtonCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

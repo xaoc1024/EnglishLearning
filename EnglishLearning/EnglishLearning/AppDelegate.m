@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Model.h"
+#import "HomeViewController.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong, readwrite) Model* model;
@@ -17,7 +18,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     self.model = [Model new];
     
     return YES;

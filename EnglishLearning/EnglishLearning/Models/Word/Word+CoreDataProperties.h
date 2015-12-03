@@ -2,7 +2,7 @@
 //  Word+CoreDataProperties.h
 //  EnglishLearning
 //
-//  Created by Andriy Zhuk on 11/22/15.
+//  Created by Andriy Zhuk on 11/28/15.
 //  Copyright © 2015 azhuk. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -10,6 +10,8 @@
 //
 
 #import "Word.h"
+
+@class User;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *originalWord;
 @property (nullable, nonatomic, retain) NSString *translatedWord;
 @property (nullable, nonatomic, retain) NSString *trnascrption;
+@property (nullable, nonatomic, retain) User *user;
 
 @end
 
