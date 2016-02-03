@@ -172,15 +172,6 @@ static NSString* const kAnswersButtonCellIdentifier = @"AnswerButtonCellIdentifi
     }
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    if (section == 2)
-//    {
-//        return 20;
-//    }
-//    return 10;
-//}
-
 - (void)anserCellDidTapCheckButton:(AnswerButtonCell*)theCell
 {
     if (self.selectedIndexPath != nil)

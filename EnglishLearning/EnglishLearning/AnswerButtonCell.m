@@ -13,8 +13,10 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.checkButton.layer.borderColor = [UIColor blackColor].CGColor;
-    self.checkButton.layer.borderWidth = 2;
+    UIImage* image = [self.checkButton backgroundImageForState:UIControlStateNormal];
+    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(28, 28, 28, 28)];
+    
+    [self.checkButton setBackgroundImage:image forState:UIControlStateNormal];
     
 }
 - (IBAction)checkButtonAction:(id)sender

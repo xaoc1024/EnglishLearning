@@ -7,6 +7,7 @@
 //
 
 #import "Word.h"
+#import "User.h"
 
 @implementation Word
 

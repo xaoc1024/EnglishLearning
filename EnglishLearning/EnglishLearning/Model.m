@@ -15,8 +15,6 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
-@property (nonatomic, strong) User* user;
-
 - (NSURL *)applicationDocumentsDirectory;
 
 @end
@@ -187,13 +185,13 @@
                 [allWords removeObject:word];
             }
             
-            word.identifier = @([elements[0] integerValue]);
+            word.identifier = elements[0];
             
-            word.originalWord = originalWord;
+            word.originalWord = [originalWord stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
             
-            word.trnascrption = elements[2];
+            word.trnascrption = [elements[2] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
             
-            word.translatedWord = elements[3];
+            word.translatedWord = [elements[3] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
             
             word.user = self.user;
         }

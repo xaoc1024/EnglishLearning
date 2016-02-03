@@ -44,7 +44,6 @@
     
         [UIView animateWithDuration:0.5 animations:^{
             self.borderedBackgroundView.backgroundColor = animationCollor;
-            [self.borderedBackgroundView setNeedsLayout];
             [self.borderedBackgroundView layoutIfNeeded];
 //        } completion:^(BOOL finished) {
 //            [UIView animateWithDuration:0.5 animations:^{

@@ -10,10 +10,12 @@
 #import <CoreData/CoreData.h>
 
 @class NSManagedObjectContext;
+@class User;
 
 @interface Model : NSObject
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) User* user;
 
 - (void)saveContext;
 - (void)setupModelWithWord;

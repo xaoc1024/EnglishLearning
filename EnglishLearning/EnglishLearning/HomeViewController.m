@@ -8,15 +8,16 @@
 
 #import "HomeViewController.h"
 #import "Model.h"
-#import "HomeTableViewCell.h"
 
 static NSString* const kWordsQuizSegueIdentifier = @"WordsQuizSegueIdentifier";
 static NSString* const kWordsListSegueIdentifier = @"WordsListSegueIdentifier";
 
-@interface HomeViewController () <UITableViewDataSource, UITableViewDelegate, HomeTableViewCellDelegate>
+@interface HomeViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSArray* titlesArray;
+@property (weak, nonatomic) IBOutlet UIButton *quizButton;
+@property (weak, nonatomic) IBOutlet UIButton *wordsListButton;
 
 @end
 
@@ -25,13 +26,11 @@ static NSString* const kWordsListSegueIdentifier = @"WordsListSegueIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([HomeTableViewCell class]) bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"HomeTableViewCellIdentifier"];
     
-    self.titlesArray = @[@"Quiz", @"Word list"];
+    UIImage* image = [self.quizButton backgroundImageForState:UIControlStateNormal];
+    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(25, 25, 25, 25)];
     
-    self.tableView.estimatedRowHeight = 53.0;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    
+    [self.quizButton setBackgroundImage:image forState:UIControlStateNormal];
 }
 
 
@@ -47,42 +46,14 @@ static NSString* const kWordsListSegueIdentifier = @"WordsListSegueIdentifier";
     }
 }
 
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (IBAction)quizButtonAction:(id)sender
 {
-    return 1;
+    [self performSegueWithIdentifier:kWordsQuizSegueIdentifier sender:self];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (IBAction)wordsListButtonAction:(id)sender
 {
-    return 2;
-}
-
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    HomeTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"HomeTableViewCellIdentifier"];
-    [cell.actionButton setTitle:self.titlesArray[indexPath.row] forState:UIControlStateNormal];
-    cell.delegate = self;
-    return cell;
-}
-
-#pragma mark - UITableViewDelegate
-
-#pragma mark - HomeTableViewCellDelegate
-
-- (void)cellDidReceiveAction:(HomeTableViewCell *)theCell
-{
-    NSIndexPath* indexPath = [self.tableView indexPathForCell:theCell];
-    
-    if (indexPath.row == 0)
-    {
-        [self performSegueWithIdentifier:kWordsQuizSegueIdentifier sender:self];
-    }
-    else if (indexPath.row == 1)
-    {
-        [self performSegueWithIdentifier:kWordsListSegueIdentifier sender:self];
-    }
+    [self performSegueWithIdentifier:kWordsListSegueIdentifier sender:self];
 }
 
 @end
