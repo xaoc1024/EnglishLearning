@@ -6,15 +6,17 @@
 //  Copyright © 2015 azhuk. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "WordsListViewController.h"
 #import "Model.h"
 #import "AppDelegate.h"
 #import <CoreData/CoreData.h>
 #import "Word.h"
 #import "WordsListTableViewCell.h"
-#import "AddWordViewController.h"
+#import "ManageWordViewController.h"
 
-@interface ViewController () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate, AddWordViewControllerDelegate>
+static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordViewControllerSegue";
+
+@interface WordsListViewController () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate, ManageWordWordViewControllerDelegate>
 
 @property (nonatomic, strong) Model* model;
 @property (strong, nonatomic) IBOutlet UITableView *wordsTableView;
@@ -25,9 +27,14 @@
 @property (nonatomic) NSArray* filteredArray;
 @property (nonatomic) NSString* previouslySearchedString;
 
+@property (nonatomic) Word* editedWord;
+
+@property (nonatomic, weak) ManageWordViewController* createWordViewController;
+@property (nonatomic, weak) ManageWordViewController* editWordViewController;
+
 @end
 
-@implementation ViewController
+@implementation WordsListViewController
 
 @synthesize filteredArray = _filteredArray;
 
@@ -47,6 +54,31 @@
     self.wordsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:kManageWordViewControllerSegueIdentifier])
+    {
+        ManageWordViewController *viewController = (ManageWordViewController *)segue.destinationViewController;
+        viewController.delegate = self;
+
+        if (self.editedWord != nil)
+        {
+            viewController.originalWord = self.editedWord.originalWord;
+            viewController.translation = self.editedWord.translatedWord;
+            viewController.transcription = self.editedWord.trnascrption;
+            self.editWordViewController = viewController;
+        }
+        else
+        {
+            self.createWordViewController = viewController;
+        }
+    }
+}
+
+#pragma mark - UITableView
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -65,12 +97,12 @@
     
     theCell.mainWordLabel.text = word.originalWord;
     
-    NSMutableAttributedString* atrString = [[NSMutableAttributedString alloc] initWithString:word.originalWord attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20], NSForegroundColorAttributeName: [UIColor blackColor]}];
+    NSMutableAttributedString* atrString = [[NSMutableAttributedString alloc] initWithString:word.originalWord attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20], NSForegroundColorAttributeName: [UIColor whiteColor]}];
    
     
     if (word.trnascrption.length > 0)
     {
-        NSAttributedString* secondString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" \"%@\"", word.trnascrption] attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:18], NSForegroundColorAttributeName: [UIColor darkGrayColor]}];
+        NSAttributedString* secondString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"\n(%@)", word.trnascrption] attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:16], NSForegroundColorAttributeName: [UIColor colorWithRed:0.85 green:0.9 blue:0.95 alpha:1.0]}];
         
         [atrString appendAttributedString:secondString];
         theCell.mainWordLabel.attributedText = atrString;
@@ -84,6 +116,46 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    Word* word = self.filteredArray[indexPath.row];
+    self.editedWord = word;
+    self.view.userInteractionEnabled = NO;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self performSegueWithIdentifier:@"ManageWordViewControllerSegue" sender:self];
+        self.view.userInteractionEnabled = YES;
+    });
+
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView beginUpdates];
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        Word* word = self.filteredArray[indexPath.row];
+
+        NSMutableArray* newArray = [NSMutableArray arrayWithArray:self.filteredArray];
+        [newArray removeObjectAtIndex:indexPath.row];
+        _filteredArray = [newArray copy];
+
+        self.fetchResultController
+        [self.model.managedObjectContext deleteObject:word];
+        [self.model saveContext];
+
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+
+    [tableView endUpdates];
+}
+
+- (IBAction)addWordAction:(id)sender
+{
+    [self performSegueWithIdentifier:@"ManageWordViewControllerSegue" sender:self];
 }
 
 #pragma mark - fetchResultController
@@ -123,38 +195,41 @@
     self.filteredArray = self.fetchResultController.fetchedObjects;
 }
 
-#pragma mark - Navigation
+#pragma mark - ManageWordWordViewControllerDelegate
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)manageWordViewControllerDidCandel:(ManageWordViewController *)viewController
 {
-    if ([segue.identifier isEqualToString:@"AddWordViewControllerSegue"])
+    if (viewController == self.editWordViewController)
     {
-        UINavigationController* navigationController = (UINavigationController *)segue.destinationViewController;
-        AddWordViewController *viewController = (AddWordViewController *)[navigationController viewControllers][0];
-        viewController.delegate = self;
+         self.editedWord = nil;
     }
+
+    [self.navigationController popToViewController:self animated:YES];
 }
 
-#pragma mark - AddWordViewControllerDelegate
-
-- (void)addWordViewControllerDidCandel:(AddWordViewController *)viewController
+- (void)manageWordViewController:(ManageWordViewController*)viewController didAddAWord:(NSString *)originalWord withTranlation:(NSString *)translation andTranscription:(NSString *)transcription
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+    Word* word = nil;
 
-- (void)addWordViewControllerDidAddAWord:(NSString *)originalWord withTranlation:(NSString *)translation andTranscription:(NSString *)transcription
-{
-    Word* word = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Word class]) inManagedObjectContext:self.model.managedObjectContext];
+    if (viewController == self.createWordViewController)
+    {
+        word = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Word class]) inManagedObjectContext:self.model.managedObjectContext];
+        word.user = self.model.user;
+        word.identifier = [[NSUUID UUID] UUIDString];
+    }
+    else if (viewController == self.editWordViewController && self.editedWord != nil)
+    {
+        word = self.editedWord;
+        self.editedWord = nil;
+    }
 
     word.originalWord = originalWord;
     word.translatedWord = translation;
     word.trnascrption = transcription;
-    word.identifier = [[NSUUID UUID] UUIDString];
-    word.user = self.model.user;
 
     [self.model saveContext];
 
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToViewController:self animated:YES];
 }
 
 #pragma mark - UISearchBar
@@ -174,6 +249,7 @@
     if (_filteredArray != filteredArray)
     {
         _filteredArray = filteredArray;
+
         [self.wordsTableView reloadData];
     }
 }
