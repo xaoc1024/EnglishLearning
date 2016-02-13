@@ -134,23 +134,27 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView beginUpdates];
+
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
+        [tableView beginUpdates];
+
         Word* word = self.filteredArray[indexPath.row];
 
         NSMutableArray* newArray = [NSMutableArray arrayWithArray:self.filteredArray];
         [newArray removeObjectAtIndex:indexPath.row];
         _filteredArray = [newArray copy];
 
-        self.fetchResultController
+        self.fetchResultController;
         [self.model.managedObjectContext deleteObject:word];
         [self.model saveContext];
 
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
+        [tableView endUpdates];
     }
 
-    [tableView endUpdates];
+
 }
 
 - (IBAction)addWordAction:(id)sender
@@ -185,6 +189,52 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
     }
     
     return _fetchResultController;
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
+           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [self.wordsTableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+
+        case NSFetchedResultsChangeDelete:
+            [self.wordsTableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath {
+
+    UITableView *tableView = self.wordsTableView;
+
+    switch(type) {
+
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+
+        case NSFetchedResultsChangeUpdate:
+            [self configureCell:[tableView cellForRowAtIndexPath:indexPath]
+                    atIndexPath:indexPath];
+            break;
+
+        case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController*)controller
