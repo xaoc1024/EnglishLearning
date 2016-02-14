@@ -24,9 +24,6 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 
-@property (nonatomic) NSArray* filteredArray;
-@property (nonatomic) NSString* previouslySearchedString;
-
 @property (nonatomic) Word* editedWord;
 
 @property (nonatomic, weak) ManageWordViewController* createWordViewController;
@@ -35,8 +32,6 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
 @end
 
 @implementation WordsListViewController
-
-@synthesize filteredArray = _filteredArray;
 
 - (void)viewDidLoad
 {
@@ -60,7 +55,9 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
 {
     if ([segue.identifier isEqualToString:kManageWordViewControllerSegueIdentifier])
     {
-        ManageWordViewController *viewController = (ManageWordViewController *)segue.destinationViewController;
+        UINavigationController* navigationController = segue.destinationViewController;
+
+        ManageWordViewController *viewController = (ManageWordViewController *)navigationController.topViewController;
         viewController.delegate = self;
 
         if (self.editedWord != nil)
@@ -81,50 +78,55 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return self.fetchResultController.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.filteredArray.count;
+    id <NSFetchedResultsSectionInfo> sectionInfo = self.fetchResultController.sections[section];
+    return sectionInfo.numberOfObjects;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    Word* word = self.filteredArray[indexPath.row];
+    Word* word = [self.fetchResultController objectAtIndexPath:indexPath];
     WordsListTableViewCell* theCell = [tableView dequeueReusableCellWithIdentifier:@"WordsListTableViewCellIdentifier"];
+
+    [self configureCell:theCell withWord:word];
     
+    return theCell;
+}
+
+- (void)configureCell:(WordsListTableViewCell*)theCell withWord:(Word*)word
+{
     theCell.mainWordLabel.text = word.originalWord;
-    
+
     NSMutableAttributedString* atrString = [[NSMutableAttributedString alloc] initWithString:word.originalWord attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20], NSForegroundColorAttributeName: [UIColor whiteColor]}];
-   
-    
+
+
     if (word.trnascrption.length > 0)
     {
         NSAttributedString* secondString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"\n(%@)", word.trnascrption] attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:16], NSForegroundColorAttributeName: [UIColor colorWithRed:0.85 green:0.9 blue:0.95 alpha:1.0]}];
-        
+
         [atrString appendAttributedString:secondString];
         theCell.mainWordLabel.attributedText = atrString;
     }
-    
+
     theCell.translationLabel.text = word.translatedWord;
-    
-    return theCell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    Word* word = self.filteredArray[indexPath.row];
+    Word* word = [self.fetchResultController objectAtIndexPath:indexPath];
+
     self.editedWord = word;
     self.view.userInteractionEnabled = NO;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self performSegueWithIdentifier:@"ManageWordViewControllerSegue" sender:self];
         self.view.userInteractionEnabled = YES;
     });
-
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -134,27 +136,13 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        [tableView beginUpdates];
+        Word* wordObject = [self.fetchResultController objectAtIndexPath:indexPath];
 
-        Word* word = self.filteredArray[indexPath.row];
-
-        NSMutableArray* newArray = [NSMutableArray arrayWithArray:self.filteredArray];
-        [newArray removeObjectAtIndex:indexPath.row];
-        _filteredArray = [newArray copy];
-
-        self.fetchResultController;
-        [self.model.managedObjectContext deleteObject:word];
+        [self.model.managedObjectContext deleteObject:wordObject];
         [self.model saveContext];
-
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-
-        [tableView endUpdates];
     }
-
-
 }
 
 - (IBAction)addWordAction:(id)sender
@@ -191,58 +179,40 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
     return _fetchResultController;
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
-           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-
-    switch(type) {
-        case NSFetchedResultsChangeInsert:
-            [self.wordsTableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-
-        case NSFetchedResultsChangeDelete:
-            [self.wordsTableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.wordsTableView beginUpdates];
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath {
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
 
     UITableView *tableView = self.wordsTableView;
 
     switch(type) {
 
         case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                             withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
 
         case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                             withRowAnimation:UITableViewRowAnimationFade];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
 
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath]
-                    atIndexPath:indexPath];
+            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] withWord:(Word*)anObject];
             break;
 
         case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                             withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                             withRowAnimation:UITableViewRowAnimationFade];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController*)controller
 {
-    self.searchBar.text = nil;
-    [self.searchBar resignFirstResponder];
-
-    self.filteredArray = self.fetchResultController.fetchedObjects;
+    [self.wordsTableView endUpdates];
 }
 
 #pragma mark - ManageWordWordViewControllerDelegate
@@ -254,7 +224,7 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
          self.editedWord = nil;
     }
 
-    [self.navigationController popToViewController:self animated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)manageWordViewController:(ManageWordViewController*)viewController didAddAWord:(NSString *)originalWord withTranlation:(NSString *)translation andTranscription:(NSString *)transcription
@@ -279,58 +249,36 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
 
     [self.model saveContext];
 
-    [self.navigationController popToViewController:self animated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UISearchBar
 
-- (NSArray*)filteredArray
-{
-    if (_filteredArray == nil)
-    {
-        _filteredArray = self.fetchResultController.fetchedObjects;
-    }
-
-    return _filteredArray;
-}
-
-- (void)setFilteredArray:(NSArray *)filteredArray
-{
-    if (_filteredArray != filteredArray)
-    {
-        _filteredArray = filteredArray;
-
-        [self.wordsTableView reloadData];
-    }
-}
-
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     NSString* searchString = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    [self makeFilteringForSearchText:searchString];
+}
 
+- (void)makeFilteringForSearchText:(NSString *)searchString
+{
     NSPredicate* predicate = nil;
+
     if (searchString.length > 0)
     {
         predicate = [NSPredicate predicateWithFormat:@"originalWord CONTAINS[cd] %@ OR translatedWord CONTAINS[cd] %@", searchString, searchString];
     }
 
-    if (predicate != nil)
-    {
-        if (self.previouslySearchedString != nil && [searchString hasPrefix:self.previouslySearchedString])
-        {
-            self.filteredArray = [self.filteredArray filteredArrayUsingPredicate:predicate];
-        }
-        else
-        {
-            self.filteredArray = [self.fetchResultController.fetchedObjects filteredArrayUsingPredicate:predicate];
-        }
-    }
-    else
-    {
-        self.filteredArray = self.fetchResultController.fetchedObjects;
-    }
+    self.fetchResultController.fetchRequest.predicate = predicate;
+    NSError* error = nil;
+    [self.fetchResultController performFetch:&error];
 
-    self.previouslySearchedString = searchString;
+    if (error != nil)
+    {
+        NSLog(@"%@", error);
+    }
+    
+    [self.wordsTableView reloadData];
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
@@ -342,7 +290,6 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
 {
     searchBar.showsCancelButton = NO;
     searchBar.text = nil;
-    self.filteredArray = self.fetchResultController.fetchedObjects;
     [searchBar resignFirstResponder];
 }
 
