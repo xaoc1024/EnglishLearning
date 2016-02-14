@@ -17,8 +17,8 @@
     image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(28, 28, 28, 28)];
     
     [self.checkButton setBackgroundImage:image forState:UIControlStateNormal];
-    
 }
+
 - (IBAction)checkButtonAction:(id)sender
 {
     [self.delegate anserCellDidTapCheckButton:self];

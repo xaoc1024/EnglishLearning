@@ -65,7 +65,7 @@
 		5C2AA3491C10E00700D87F59 /* WordsListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordsListTableViewCell.xib; sourceTree = "<group>"; };
 		5C5957D91C53E945003A1C86 /* ManageWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageWordViewController.h; sourceTree = "<group>"; };
 		5C5957DA1C53E945003A1C86 /* ManageWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageWordViewController.m; sourceTree = "<group>"; };
-		5CAF68E11C00ACAF00795AD0 /* EnglishLearning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnglishLearning.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CAF68E11C00ACAF00795AD0 /* Words.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Words.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CAF68E51C00ACAF00795AD0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5CAF68E71C00ACAF00795AD0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5CAF68E81C00ACAF00795AD0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 		5CAF68E21C00ACAF00795AD0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5CAF68E11C00ACAF00795AD0 /* EnglishLearning.app */,
+				5CAF68E11C00ACAF00795AD0 /* Words.app */,
 				5CAF68FD1C00ACB000795AD0 /* EnglishLearningTests.xctest */,
 				5CAF69081C00ACB000795AD0 /* EnglishLearningUITests.xctest */,
 			);
@@ -317,9 +317,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5CAF68E01C00ACAF00795AD0 /* EnglishLearning */ = {
+		5CAF68E01C00ACAF00795AD0 /* Words */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5CAF69111C00ACB000795AD0 /* Build configuration list for PBXNativeTarget "EnglishLearning" */;
+			buildConfigurationList = 5CAF69111C00ACB000795AD0 /* Build configuration list for PBXNativeTarget "Words" */;
 			buildPhases = (
 				5CAF68DD1C00ACAF00795AD0 /* Sources */,
 				5CAF68DE1C00ACAF00795AD0 /* Frameworks */,
@@ -329,9 +329,9 @@
 			);
 			dependencies = (
 			);
-			name = EnglishLearning;
+			name = Words;
 			productName = EnglishLearning;
-			productReference = 5CAF68E11C00ACAF00795AD0 /* EnglishLearning.app */;
+			productReference = 5CAF68E11C00ACAF00795AD0 /* Words.app */;
 			productType = "com.apple.product-type.application";
 		};
 		5CAF68FC1C00ACB000795AD0 /* EnglishLearningTests */ = {
@@ -407,7 +407,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5CAF68E01C00ACAF00795AD0 /* EnglishLearning */,
+				5CAF68E01C00ACAF00795AD0 /* Words */,
 				5CAF68FC1C00ACB000795AD0 /* EnglishLearningTests */,
 				5CAF69071C00ACB000795AD0 /* EnglishLearningUITests */,
 			);
@@ -491,12 +491,12 @@
 /* Begin PBXTargetDependency section */
 		5CAF68FF1C00ACB000795AD0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5CAF68E01C00ACAF00795AD0 /* EnglishLearning */;
+			target = 5CAF68E01C00ACAF00795AD0 /* Words */;
 			targetProxy = 5CAF68FE1C00ACB000795AD0 /* PBXContainerItemProxy */;
 		};
 		5CAF690A1C00ACB000795AD0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5CAF68E01C00ACAF00795AD0 /* EnglishLearning */;
+			target = 5CAF68E01C00ACAF00795AD0 /* Words */;
 			targetProxy = 5CAF69091C00ACB000795AD0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -557,7 +557,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -594,7 +594,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -691,7 +691,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5CAF69111C00ACB000795AD0 /* Build configuration list for PBXNativeTarget "EnglishLearning" */ = {
+		5CAF69111C00ACB000795AD0 /* Build configuration list for PBXNativeTarget "Words" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5CAF69121C00ACB000795AD0 /* Debug */,
