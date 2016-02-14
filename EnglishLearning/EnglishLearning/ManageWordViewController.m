@@ -6,27 +6,17 @@
 //  Copyright © 2016 azhuk. All rights reserved.
 //
 
-#import "AddWordViewController.h"
+#import "ManageWordViewController.h"
 #import "Word.h"
 
-@interface AddWordViewController () <UITextFieldDelegate>
+@interface ManageWordViewController () <UITextFieldDelegate>
 @property (nonatomic) IBOutlet UITextField *originalWordTextField;
 @property (nonatomic) IBOutlet UITextField *translationTextField;
 @property (nonatomic) IBOutlet UITextField *transcriptionTextField;
 
-@property (nonatomic) NSString* originalWord;
-@property (nonatomic) NSString* translation;
-@property (nonatomic) NSString* transcription;
-
 @end
 
-@implementation AddWordViewController
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-}
+@implementation ManageWordViewController
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -43,7 +33,7 @@
 
     if (self.originalWord.length > 0 && self.translation.length > 0)
     {
-        [self.delegate addWordViewControllerDidAddAWord:self.originalWord withTranlation:self.translation andTranscription:self.transcription];
+        [self.delegate manageWordViewController:self didAddAWord:self.originalWord withTranlation:self.translation andTranscription:self.transcription];
     }
     else
     {
@@ -58,7 +48,7 @@
 
 - (IBAction)cancelButtonAction:(id)sender
 {
-    [self.delegate addWordViewControllerDidCandel:self];
+    [self.delegate manageWordViewControllerDidCandel:self];
 }
 
 #pragma mark - UITextFieldDelegate
