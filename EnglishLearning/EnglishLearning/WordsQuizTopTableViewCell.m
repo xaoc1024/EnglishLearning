@@ -10,9 +10,5 @@
 
 @implementation WordsQuizTopTableViewCell
 
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-}
 
 @end

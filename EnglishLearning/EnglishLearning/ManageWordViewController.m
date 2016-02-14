@@ -18,6 +18,22 @@
 
 @implementation ManageWordViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.tableView.estimatedRowHeight = 50;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+
+    UIView* view = [[UIView alloc] initWithFrame:self.tableView.bounds];
+    [view addSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background"]]];
+    UIView* overlayView = [[UIView alloc] initWithFrame:self.tableView.bounds];
+    overlayView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
+    [view addSubview:overlayView];
+
+    self.tableView.backgroundView = view;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

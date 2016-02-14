@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:EnglishLearning.xcodeproj">
+      location = "self:/Users/xaoc1024/Documents/Projects/Git/EnglishLearning/Words Learning.xcodeproj">
    </FileRef>
 </Workspace>

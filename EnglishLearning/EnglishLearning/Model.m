@@ -10,6 +10,8 @@
 #import "Word.h"
 #import "User.h"
 
+static NSString* const kANFirstLaunch = @"kANFirstLaunch";
+
 @interface Model ()
 
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
@@ -28,6 +30,8 @@
     if (self != nil)
     {
         [self createUser];
+        [self setupModelIfNeeded];
+
     }
     return self;
 }
@@ -140,7 +144,17 @@
 
 #pragma mark - Work With Model
 
-- (void)setupModelWithWord
+- (void)setupModelIfNeeded
+{
+    BOOL firstLaunch = [[NSUserDefaults standardUserDefaults] boolForKey:kANFirstLaunch];
+    if (!firstLaunch)
+    {
+        [self setupModelWithWords];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kANFirstLaunch];
+    }
+}
+
+- (void)setupModelWithWords
 {
     NSError* error = nil;
     

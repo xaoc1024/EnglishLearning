@@ -45,7 +45,6 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
     self.wordsTableView.estimatedRowHeight = 74.0;
     self.wordsTableView.rowHeight = UITableViewAutomaticDimension;
     
-    [self.model setupModelWithWord];
     self.wordsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 

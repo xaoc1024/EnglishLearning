@@ -38,7 +38,6 @@ static NSString* const kAnswersButtonCellIdentifier = @"AnswerButtonCellIdentifi
     [super viewDidLoad];
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.model = appDelegate.model;
-    [self.model setupModelWithWord];
     
     [self.quizTableView registerNib:[UINib nibWithNibName:@"AnswersTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:kAnswersCellIdentifier];
     
@@ -46,7 +45,7 @@ static NSString* const kAnswersButtonCellIdentifier = @"AnswerButtonCellIdentifi
     
     [self.quizTableView registerNib:[UINib nibWithNibName:@"AnswerButtonCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:kAnswersButtonCellIdentifier];
     
-    self.quizTableView.estimatedRowHeight = 40;
+    self.quizTableView.estimatedRowHeight = 50.0;
     self.quizTableView.rowHeight = UITableViewAutomaticDimension;
     
     NSFetchRequest* wordsRequest = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
@@ -187,7 +186,7 @@ static NSString* const kAnswersButtonCellIdentifier = @"AnswerButtonCellIdentifi
         
         self.quizTableView.userInteractionEnabled = NO;
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.quizTableView.userInteractionEnabled = YES;
             [self prepareNextQuestions];
         });

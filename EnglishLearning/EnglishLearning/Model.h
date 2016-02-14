@@ -18,6 +18,6 @@
 @property (nonatomic, strong) User* user;
 
 - (void)saveContext;
-- (void)setupModelWithWord;
+- (void)setupModelWithWords;
 
 @end
