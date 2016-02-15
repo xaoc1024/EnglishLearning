@@ -91,7 +91,7 @@
         <!--Add word-->
         <scene sceneID="dT2-1U-Ub5">
             <objects>
-                <tableViewController id="SXj-5w-xSw" customClass="ManageWordViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ManageWordViewControllerStoryboardID" id="SXj-5w-xSw" customClass="ManageWordViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" keyboardDismissMode="onDrag" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="50" sectionFooterHeight="28" id="uEG-kc-0eM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

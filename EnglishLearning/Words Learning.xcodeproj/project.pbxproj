@@ -19,7 +19,7 @@
 		5CAF68F21C00ACAF00795AD0 /* EnglishLearning.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF68F01C00ACAF00795AD0 /* EnglishLearning.xcdatamodeld */; };
 		5CAF68F41C00ACAF00795AD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5CAF68F31C00ACAF00795AD0 /* Assets.xcassets */; };
 		5CAF68F71C00ACAF00795AD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CAF68F51C00ACAF00795AD0 /* LaunchScreen.storyboard */; };
-		5CAF69021C00ACB000795AD0 /* EnglishLearningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF69011C00ACB000795AD0 /* EnglishLearningTests.m */; };
+		5CAF69021C00ACB000795AD0 /* WordsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF69011C00ACB000795AD0 /* WordsTest.m */; };
 		5CAF690D1C00ACB000795AD0 /* EnglishLearningUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF690C1C00ACB000795AD0 /* EnglishLearningUITests.m */; };
 		5CAF691F1C00BEDE00795AD0 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF691E1C00BEDE00795AD0 /* Model.m */; };
 		5CAF69211C00C86000795AD0 /* EnglishWords.csv in Resources */ = {isa = PBXBuildFile; fileRef = 5C19E3E81C00C3BB0088DE11 /* EnglishWords.csv */; };
@@ -77,7 +77,7 @@
 		5CAF68F61C00ACAF00795AD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5CAF68F81C00ACAF00795AD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5CAF68FD1C00ACB000795AD0 /* EnglishLearningTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnglishLearningTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5CAF69011C00ACB000795AD0 /* EnglishLearningTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EnglishLearningTests.m; sourceTree = "<group>"; };
+		5CAF69011C00ACB000795AD0 /* WordsTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsTest.m; sourceTree = "<group>"; };
 		5CAF69031C00ACB000795AD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5CAF69081C00ACB000795AD0 /* EnglishLearningUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnglishLearningUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CAF690C1C00ACB000795AD0 /* EnglishLearningUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EnglishLearningUITests.m; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 		5CAF69001C00ACB000795AD0 /* EnglishLearningTests */ = {
 			isa = PBXGroup;
 			children = (
-				5CAF69011C00ACB000795AD0 /* EnglishLearningTests.m */,
+				5CAF69011C00ACB000795AD0 /* WordsTest.m */,
 				5CAF69031C00ACB000795AD0 /* Info.plist */,
 			);
 			path = EnglishLearningTests;
@@ -474,7 +474,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CAF69021C00ACB000795AD0 /* EnglishLearningTests.m in Sources */,
+				5CAF69021C00ACB000795AD0 /* WordsTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,7 +639,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.azhuk.EnglishLearningTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EnglishLearning.app/EnglishLearning";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Words.app/Words";
 			};
 			name = Debug;
 		};
@@ -651,7 +651,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.azhuk.EnglishLearningTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EnglishLearning.app/EnglishLearning";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Words.app/Words";
 			};
 			name = Release;
 		};
