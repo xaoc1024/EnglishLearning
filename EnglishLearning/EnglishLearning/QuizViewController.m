@@ -18,16 +18,20 @@ static NSString* const kTopCellIdentifier = @"WordsQuizTableViewCellIdentifier";
 static NSString* const kAnswersCellIdentifier = @"AnswersTableViewCellIdentifier";
 static NSString* const kAnswersButtonCellIdentifier = @"AnswerButtonCellIdentifier";
 
+static const NSInteger kNumberOfWordsInTest = 4;
+
 @interface QuizViewController ()<UITableViewDataSource, UITableViewDelegate, AnswerButtonCellDelegate>
 
 @property (nonatomic) IBOutlet UITableView *quizTableView;
-@property (nonatomic) NSArray* wordsArray;
-@property (nonatomic) NSMutableArray* answersArray;
+
 @property (nonatomic) Word* questionWord;
 
-@property (nonatomic) NSMutableArray* wordNumbersArray;
+@property (nonatomic) NSMutableArray* wordsArray;
+@property (nonatomic) NSMutableArray* answersArray;
+@property (nonatomic) NSMutableArray* recentWords;
 
 @property (nonatomic) NSIndexPath* selectedIndexPath;
+@property (nonatomic) NSInteger recentWordsMaxCount;
 
 @end
 
@@ -48,15 +52,25 @@ static NSString* const kAnswersButtonCellIdentifier = @"AnswerButtonCellIdentifi
     self.quizTableView.estimatedRowHeight = 50.0;
     self.quizTableView.rowHeight = UITableViewAutomaticDimension;
     
-    NSFetchRequest* wordsRequest = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
-    
-    NSError* error = nil;
-    self.wordsArray = [self.model.managedObjectContext executeFetchRequest:wordsRequest error:&error];
-    
-    self.wordNumbersArray = [NSMutableArray array];
-    self.answersArray = [NSMutableArray array];
-    
+    [self fetchAllWords];
+
+    self.recentWords = [NSMutableArray new];
+
     [self prepareNextQuestions];
+}
+
+- (void)fetchAllWords
+{
+    NSFetchRequest* wordsRequest = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
+
+    NSError* error = nil;
+    self.wordsArray = [[self.model.managedObjectContext executeFetchRequest:wordsRequest error:&error] mutableCopy];
+    if (error != nil)
+    {
+        NSLog(@"Cannot fetch words. Error: %@", error);
+    }
+
+    self.recentWordsMaxCount = 5;//self.wordsArray.count / 10;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -66,46 +80,47 @@ static NSString* const kAnswersButtonCellIdentifier = @"AnswerButtonCellIdentifi
     [super viewWillDisappear:animated];
 }
 
-- (void)prepareNextQuestions
+- (void)resetTest
 {
-    self.wordNumbersArray = [NSMutableArray array];
-    self.answersArray = [NSMutableArray array];
     self.selectedIndexPath = nil;
-    
-    while (self.wordNumbersArray.count < 4)
-    {
-        NSNumber* randomNumber = @(arc4random() % self.wordsArray.count);
-        BOOL exists = NO;
-        
-        for (NSNumber* previousNumber in self.wordNumbersArray)
-        {
-            if ([previousNumber isEqualToNumber:randomNumber])
-            {
-                exists = YES;
-                break;
-            }
-        }
-        
-        if (!exists)
-        {
-            [self.wordNumbersArray addObject:randomNumber];
-        }
-    }
-    
-    for (NSNumber* number in self.wordNumbersArray)
-    {
-        [self.answersArray addObject:self.wordsArray[number.integerValue]];
-    }
-    
-    NSInteger randowQuestionWordNumber = arc4random() % 4;
-    self.questionWord = self.answersArray[randowQuestionWordNumber];
-    [self.quizTableView reloadData];
-    
+    self.answersArray = [NSMutableArray array];
+    self.questionWord = nil;
 }
 
-- (void)didReceiveMemoryWarning
+- (void)prepareNextQuestions
 {
-    [super didReceiveMemoryWarning];
+    [self resetTest];
+
+    while (self.answersArray.count < kNumberOfWordsInTest)
+    {
+        Word* randomWord =  self.wordsArray[arc4random() % self.wordsArray.count];
+
+        if (![self.answersArray containsObject:randomWord])
+        {
+            [self.answersArray addObject:randomWord];
+        }
+    }
+    
+    unsigned int randowQuestionWordNumber = arc4random() % kNumberOfWordsInTest;
+    self.questionWord = self.answersArray[randowQuestionWordNumber];
+
+    [self addWordToRecent:self.questionWord];
+
+
+    [self.quizTableView reloadData];
+}
+
+- (void)addWordToRecent:(Word*)word
+{
+    [self.recentWords addObject:word];
+
+    [self.wordsArray removeObject:word];
+
+    if (self.recentWords.count > self.recentWordsMaxCount)
+    {
+        [self.wordsArray addObject:self.recentWords.firstObject];
+        [self.recentWords removeObjectAtIndex:0];
+    }
 }
 
 #pragma mark - UITableView
