@@ -10,9 +10,10 @@
 
 @interface WordsListTableViewCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *mainWordLabel;
-@property (strong, nonatomic) IBOutlet UILabel *transcriptionLabel;
+@property (nonatomic) IBOutlet UILabel *mainWordLabel;
+@property (nonatomic) IBOutlet UILabel *transcriptionLabel;
 
-@property (strong, nonatomic) IBOutlet UILabel *translationLabel;
+@property (nonatomic) IBOutlet UILabel *translationLabel;
+@property (nonatomic) IBOutlet UILabel* infoLabel;
 
 @end

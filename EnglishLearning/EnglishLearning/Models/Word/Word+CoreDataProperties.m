@@ -1,8 +1,8 @@
 //
 //  Word+CoreDataProperties.m
-//  EnglishLearning
+//  Words Learning
 //
-//  Created by Andriy Zhuk on 04.02.16.
+//  Created by Andriy Zhuk on 2/28/16.
 //  Copyright © 2016 azhuk. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -17,6 +17,9 @@
 @dynamic originalWord;
 @dynamic translatedWord;
 @dynamic trnascrption;
+@dynamic creationDate;
+@dynamic totalAnswers;
+@dynamic correctAnswers;
 @dynamic user;
 
 @end

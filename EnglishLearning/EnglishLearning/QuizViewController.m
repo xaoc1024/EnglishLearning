@@ -20,14 +20,14 @@ static NSString* const kAnswersButtonCellIdentifier = @"AnswerButtonCellIdentifi
 
 @interface QuizViewController ()<UITableViewDataSource, UITableViewDelegate, AnswerButtonCellDelegate>
 
-@property (strong, nonatomic) IBOutlet UITableView *quizTableView;
-@property (nonatomic, strong) NSArray* wordsArray;
-@property (nonatomic, strong) NSMutableArray* answersArray;
-@property (nonatomic, strong) Word* questionWord;
+@property (nonatomic) IBOutlet UITableView *quizTableView;
+@property (nonatomic) NSArray* wordsArray;
+@property (nonatomic) NSMutableArray* answersArray;
+@property (nonatomic) Word* questionWord;
 
-@property (nonatomic, strong) NSMutableArray* wordNumbersArray;
+@property (nonatomic) NSMutableArray* wordNumbersArray;
 
-@property (nonatomic, strong) NSIndexPath* selectedIndexPath;
+@property (nonatomic) NSIndexPath* selectedIndexPath;
 
 @end
 
@@ -57,6 +57,13 @@ static NSString* const kAnswersButtonCellIdentifier = @"AnswerButtonCellIdentifi
     self.answersArray = [NSMutableArray array];
     
     [self prepareNextQuestions];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.model saveContext];
+
+    [super viewWillDisappear:animated];
 }
 
 - (void)prepareNextQuestions
@@ -177,15 +184,23 @@ static NSString* const kAnswersButtonCellIdentifier = @"AnswerButtonCellIdentifi
     {
         AnswersTableViewCell* cell = [self.quizTableView cellForRowAtIndexPath:self.selectedIndexPath];
         NSInteger correctIndex = [self.answersArray indexOfObject:self.questionWord];
-        
-        [cell animateBackgroundForCorrectAnswer:correctIndex == self.selectedIndexPath.row];
+
+        BOOL answerIsCorrect = correctIndex == self.selectedIndexPath.row;
+        [cell animateBackgroundForCorrectAnswer:answerIsCorrect];
         
         NSIndexPath* correctIndexPath = [NSIndexPath indexPathForRow:correctIndex inSection:1];
         cell = [self.quizTableView cellForRowAtIndexPath:correctIndexPath];
         [cell animateBackgroundForCorrectAnswer:YES];
         
         self.quizTableView.userInteractionEnabled = NO;
-        
+
+        self.questionWord.totalAnswers = @(self.questionWord.totalAnswers.integerValue + 1);
+
+        if (answerIsCorrect)
+        {
+            self.questionWord.correctAnswers = @(self.questionWord.correctAnswers.integerValue + 1);
+        }
+
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.quizTableView.userInteractionEnabled = YES;
             [self prepareNextQuestions];

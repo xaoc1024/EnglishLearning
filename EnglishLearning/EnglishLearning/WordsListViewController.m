@@ -40,8 +40,6 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.model = appDelegate.model;
     
-    [self.wordsTableView registerNib:[UINib nibWithNibName:NSStringFromClass([WordsListTableViewCell class]) bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WordsListTableViewCellIdentifier"];
-    
     self.wordsTableView.estimatedRowHeight = 74.0;
     self.wordsTableView.rowHeight = UITableViewAutomaticDimension;
     
@@ -100,17 +98,24 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
 {
     theCell.mainWordLabel.text = word.originalWord;
 
-    NSMutableAttributedString* atrString = [[NSMutableAttributedString alloc] initWithString:word.originalWord attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20], NSForegroundColorAttributeName: [UIColor whiteColor]}];
 
-
-    if (word.trnascrption.length > 0)
+    if (word.totalAnswers.integerValue > 0)
     {
-        NSAttributedString* secondString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"\n(%@)", word.trnascrption] attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:16], NSForegroundColorAttributeName: [UIColor colorWithRed:0.85 green:0.9 blue:0.95 alpha:1.0]}];
+        NSInteger correctAnswers = word.correctAnswers.integerValue;
+        NSInteger totalAnswers = word.totalAnswers.integerValue;
+        CGFloat percentRation = 0.0;
+        if (totalAnswers > 0)
+        {
+            percentRation = (correctAnswers / totalAnswers) * 100.0;
+        }
 
-        [atrString appendAttributedString:secondString];
-        theCell.mainWordLabel.attributedText = atrString;
+        theCell.infoLabel.text = [NSString stringWithFormat:@"%ld/%ld (%.0f%%)", correctAnswers, totalAnswers, percentRation];
     }
-
+    else
+    {
+        theCell.infoLabel.text = nil;
+    }
+    
     theCell.translationLabel.text = word.translatedWord;
 }
 
@@ -289,6 +294,8 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
 {
     searchBar.showsCancelButton = NO;
     searchBar.text = nil;
+    [self searchBar:searchBar textDidChange:@""];
+
     [searchBar resignFirstResponder];
 }
 

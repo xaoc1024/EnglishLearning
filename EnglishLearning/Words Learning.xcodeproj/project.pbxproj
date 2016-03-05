@@ -10,7 +10,6 @@
 		5C0F47271C0A0B310053B22F /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0F47241C0A0B310053B22F /* Word.m */; };
 		5C0F47281C0A0B310053B22F /* Word+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0F47261C0A0B310053B22F /* Word+CoreDataProperties.m */; };
 		5C2AA34A1C10E00700D87F59 /* WordsListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2AA3481C10E00700D87F59 /* WordsListTableViewCell.m */; };
-		5C2AA34B1C10E00700D87F59 /* WordsListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C2AA3491C10E00700D87F59 /* WordsListTableViewCell.xib */; };
 		5C5957DB1C53E945003A1C86 /* ManageWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5957DA1C53E945003A1C86 /* ManageWordViewController.m */; };
 		5CAF68E61C00ACAF00795AD0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF68E51C00ACAF00795AD0 /* main.m */; };
 		5CAF68E91C00ACAF00795AD0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF68E81C00ACAF00795AD0 /* AppDelegate.m */; };
@@ -62,9 +61,9 @@
 		5C19E3E81C00C3BB0088DE11 /* EnglishWords.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EnglishWords.csv; sourceTree = "<group>"; };
 		5C2AA3471C10E00700D87F59 /* WordsListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordsListTableViewCell.h; sourceTree = "<group>"; };
 		5C2AA3481C10E00700D87F59 /* WordsListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordsListTableViewCell.m; sourceTree = "<group>"; };
-		5C2AA3491C10E00700D87F59 /* WordsListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordsListTableViewCell.xib; sourceTree = "<group>"; };
 		5C5957D91C53E945003A1C86 /* ManageWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageWordViewController.h; sourceTree = "<group>"; };
 		5C5957DA1C53E945003A1C86 /* ManageWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageWordViewController.m; sourceTree = "<group>"; };
+		5CA0E6B21C73731B00BD23BD /* EnglishLearning_2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EnglishLearning_2.xcdatamodel; sourceTree = "<group>"; };
 		5CAF68E11C00ACAF00795AD0 /* Words.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Words.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CAF68E51C00ACAF00795AD0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5CAF68E71C00ACAF00795AD0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -137,7 +136,6 @@
 			children = (
 				5C2AA3471C10E00700D87F59 /* WordsListTableViewCell.h */,
 				5C2AA3481C10E00700D87F59 /* WordsListTableViewCell.m */,
-				5C2AA3491C10E00700D87F59 /* WordsListTableViewCell.xib */,
 			);
 			name = WordsListTableViewCell;
 			sourceTree = "<group>";
@@ -420,7 +418,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CAF68F71C00ACAF00795AD0 /* LaunchScreen.storyboard in Resources */,
-				5C2AA34B1C10E00700D87F59 /* WordsListTableViewCell.xib in Resources */,
 				5CAF68F41C00ACAF00795AD0 /* Assets.xcassets in Resources */,
 				5CAF68EF1C00ACAF00795AD0 /* Main.storyboard in Resources */,
 				5CAF69381C021F8000795AD0 /* AnswersTableViewCell.xib in Resources */,
@@ -662,7 +659,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.azhuk.EnglishLearningUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = EnglishLearning;
+				TEST_TARGET_NAME = Words;
 				USES_XCTRUNNER = YES;
 			};
 			name = Debug;
@@ -674,7 +671,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.azhuk.EnglishLearningUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = EnglishLearning;
+				TEST_TARGET_NAME = Words;
 				USES_XCTRUNNER = YES;
 			};
 			name = Release;
@@ -724,9 +721,10 @@
 		5CAF68F01C00ACAF00795AD0 /* EnglishLearning.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				5CA0E6B21C73731B00BD23BD /* EnglishLearning_2.xcdatamodel */,
 				5CAF68F11C00ACAF00795AD0 /* EnglishLearning.xcdatamodel */,
 			);
-			currentVersion = 5CAF68F11C00ACAF00795AD0 /* EnglishLearning.xcdatamodel */;
+			currentVersion = 5CA0E6B21C73731B00BD23BD /* EnglishLearning_2.xcdatamodel */;
 			path = EnglishLearning.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
