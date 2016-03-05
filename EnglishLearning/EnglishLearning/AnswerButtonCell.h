@@ -12,7 +12,7 @@
 
 @protocol AnswerButtonCellDelegate <NSObject>
 
-- (void)anserCellDidTapCheckButton:(AnswerButtonCell*)theCell;
+- (void)answerCellDidTapCheckButton:(AnswerButtonCell*)theCell;
 
 @end
 

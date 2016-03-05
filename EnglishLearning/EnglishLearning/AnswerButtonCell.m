@@ -21,7 +21,7 @@
 
 - (IBAction)checkButtonAction:(id)sender
 {
-    [self.delegate anserCellDidTapCheckButton:self];
+    [self.delegate answerCellDidTapCheckButton:self];
 }
 
 @end

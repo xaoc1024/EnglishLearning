@@ -20,19 +20,24 @@ static NSString* const kAnswersButtonCellIdentifier = @"AnswerButtonCellIdentifi
 
 static const NSInteger kNumberOfWordsInTest = 4;
 
+// TODO: implement check for amount of words in DB and prevent test if user has less that 4 words
+
 @interface QuizViewController ()<UITableViewDataSource, UITableViewDelegate, AnswerButtonCellDelegate>
 
 @property (nonatomic) IBOutlet UITableView *quizTableView;
 
 @property (nonatomic) Word* questionWord;
 
-@property (nonatomic) NSMutableArray* wordsArray;
+@property (nonatomic) NSMutableArray* allWordsArray;
 @property (nonatomic) NSMutableArray* answersArray;
 @property (nonatomic) NSMutableArray* recentWords;
 
 @property (nonatomic) NSIndexPath* selectedIndexPath;
 @property (nonatomic) NSInteger recentWordsMaxCount;
 
+@property (nonatomic, getter=isWaitingForNextWord) BOOL waitingForNextWord;
+
+@property (nonatomic) AnswerButtonCell* answerButtonCell;
 @end
 
 @implementation QuizViewController
@@ -64,13 +69,13 @@ static const NSInteger kNumberOfWordsInTest = 4;
     NSFetchRequest* wordsRequest = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
 
     NSError* error = nil;
-    self.wordsArray = [[self.model.managedObjectContext executeFetchRequest:wordsRequest error:&error] mutableCopy];
+    self.allWordsArray = [[self.model.managedObjectContext executeFetchRequest:wordsRequest error:&error] mutableCopy];
     if (error != nil)
     {
         NSLog(@"Cannot fetch words. Error: %@", error);
     }
 
-    self.recentWordsMaxCount = 5;//self.wordsArray.count / 10;
+    self.recentWordsMaxCount = self.allWordsArray.count / 10;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -82,8 +87,12 @@ static const NSInteger kNumberOfWordsInTest = 4;
 
 - (void)resetTest
 {
-    self.selectedIndexPath = nil;
+    self.waitingForNextWord = NO;
+    [self.answerButtonCell.checkButton setTitle:@"Check" forState:UIControlStateNormal];
+
     self.answersArray = [NSMutableArray array];
+
+    self.selectedIndexPath = nil;
     self.questionWord = nil;
 }
 
@@ -91,9 +100,10 @@ static const NSInteger kNumberOfWordsInTest = 4;
 {
     [self resetTest];
 
+    NSUInteger allWordsCount = self.allWordsArray.count;
     while (self.answersArray.count < kNumberOfWordsInTest)
     {
-        Word* randomWord =  self.wordsArray[arc4random() % self.wordsArray.count];
+        Word* randomWord = self.allWordsArray[arc4random() % allWordsCount];
 
         if (![self.answersArray containsObject:randomWord])
         {
@@ -114,11 +124,11 @@ static const NSInteger kNumberOfWordsInTest = 4;
 {
     [self.recentWords addObject:word];
 
-    [self.wordsArray removeObject:word];
+    [self.allWordsArray removeObject:word];
 
     if (self.recentWords.count > self.recentWordsMaxCount)
     {
-        [self.wordsArray addObject:self.recentWords.firstObject];
+        [self.allWordsArray addObject:self.recentWords.firstObject];
         [self.recentWords removeObjectAtIndex:0];
     }
 }
@@ -189,13 +199,20 @@ static const NSInteger kNumberOfWordsInTest = 4;
         
         cell = [tableView cellForRowAtIndexPath:indexPath];
         cell.answerIsSelected = YES;
+
         self.selectedIndexPath = indexPath;
     }
 }
 
-- (void)anserCellDidTapCheckButton:(AnswerButtonCell*)theCell
+- (void)answerCellDidTapCheckButton:(AnswerButtonCell*)theCell
 {
-    if (self.selectedIndexPath != nil)
+    if (self.waitingForNextWord)
+    {
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(prepareNextQuestions) object:nil];
+        [self prepareNextQuestions];
+    }
+
+    if (self.selectedIndexPath != nil )
     {
         AnswersTableViewCell* cell = [self.quizTableView cellForRowAtIndexPath:self.selectedIndexPath];
         NSInteger correctIndex = [self.answersArray indexOfObject:self.questionWord];
@@ -206,8 +223,6 @@ static const NSInteger kNumberOfWordsInTest = 4;
         NSIndexPath* correctIndexPath = [NSIndexPath indexPathForRow:correctIndex inSection:1];
         cell = [self.quizTableView cellForRowAtIndexPath:correctIndexPath];
         [cell animateBackgroundForCorrectAnswer:YES];
-        
-        self.quizTableView.userInteractionEnabled = NO;
 
         self.questionWord.totalAnswers = @(self.questionWord.totalAnswers.integerValue + 1);
 
@@ -216,20 +231,34 @@ static const NSInteger kNumberOfWordsInTest = 4;
             self.questionWord.correctAnswers = @(self.questionWord.correctAnswers.integerValue + 1);
         }
 
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            self.quizTableView.userInteractionEnabled = YES;
-            [self prepareNextQuestions];
-        });
+        [self waitForNextWord];
     }
+}
+
+- (void)waitForNextWord
+{
+    self.waitingForNextWord = YES;
+    [self.answerButtonCell.checkButton setTitle:@"Go to Next Word" forState:UIControlStateNormal];
+    [self performSelector:@selector(prepareNextQuestions) withObject:nil afterDelay:2.0];
+}
+
+- (AnswerButtonCell*)answerButtonCell
+{
+    if (_answerButtonCell == nil)
+    {
+        NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:2];
+        _answerButtonCell = [self.quizTableView cellForRowAtIndexPath:indexPath];
+    }
+    return _answerButtonCell;
 }
 
 - (NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0 || indexPath.section == 2)
+    if (indexPath.section == 0 || indexPath.section == 2 || self.waitingForNextWord)
     {
         return nil;
     }
-    
+
     return indexPath;
 }
 
