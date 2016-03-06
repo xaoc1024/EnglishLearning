@@ -1,0 +1,27 @@
+//
+//  PrefixHeader.pch
+//  Words Learning
+//
+//  Created by Andriy Zhuk on 3/6/16.
+//  Copyright © 2016 azhuk. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "ANRequestsManager.h"
+#import "ANWordAudioDataRequestManager.h"
+#import "Model.h"
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#define SAFE_SET_OBJECT(dictionary, key, value) if (nil != value)[dictionary setObject:value forKey:key]
+#define SAFE_GET_OBJECT(dictionary, key) ([[dictionary objectForKey:key] isEqual:[NSNull null]] ? nil : [dictionary objectForKey:key])
+#define SAFE_GET_STRING(stringValue) (stringValue != nil) ? stringValue : @""
+#define SAFE_ADD_OBJECT(array, value) if (nil != value)[array addObject:value]
+#define SAFE_ADD_STRING(array, value) if ([value length] > 0)[array addObject:value]
+#define SAFE_GET_OBJECT_AT_INDEX(array, index) ([array count] > index) ? [array objectAtIndex:index] : nil
+
+
+#endif /* PrefixHeader_pch */

@@ -9,6 +9,7 @@
 #import "Model.h"
 #import "Word.h"
 #import "User.h"
+#import "AFNetworking.h"
 
 static NSString* const kANFirstLaunch = @"kANFirstLaunch";
 

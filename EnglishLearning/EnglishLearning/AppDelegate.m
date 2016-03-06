@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "Model.h"
 #import "HomeViewController.h"
+#import "ANRequestsManager.h"
+#import "ANWordAudioDataRequestManager.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong, readwrite) Model* model;
@@ -16,10 +18,12 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.model = [Model new];
 
+    ANWordAudioDataRequestManager* manager = [ANWordAudioDataRequestManager new];
+    [manager downloadWord:@"ubiquitous"];
+    
     return YES;
 }
 
