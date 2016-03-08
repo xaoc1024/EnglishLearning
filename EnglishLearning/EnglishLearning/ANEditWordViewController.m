@@ -6,10 +6,10 @@
 //  Copyright © 2016 azhuk. All rights reserved.
 //
 
-#import "ManageWordViewController.h"
+#import "ANEditWordViewController.h"
 #import "Word.h"
 
-@interface ManageWordViewController () <UITextFieldDelegate>
+@interface ANEditWordViewController () <UITextFieldDelegate>
 @property (nonatomic) IBOutlet UITextField *originalWordTextField;
 @property (nonatomic) IBOutlet UITextField *translationTextField;
 @property (nonatomic) IBOutlet UITextField *transcriptionTextField;

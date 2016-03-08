@@ -8,16 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@class ManageWordViewController;
+@class ANEditWordViewController;
 
 @protocol ManageWordWordViewControllerDelegate <NSObject>
 
-- (void)manageWordViewControllerDidCandel:(ManageWordViewController *)viewController;
-- (void)manageWordViewController:(ManageWordViewController *)viewController didAddAWord:(NSString *)originalWord withTranlation:(NSString *)translation andTranscription:(NSString *)transcription;
+- (void)manageWordViewControllerDidCandel:(ANEditWordViewController *)viewController;
+- (void)manageWordViewController:(ANEditWordViewController *)viewController didAddAWord:(NSString *)originalWord withTranlation:(NSString *)translation andTranscription:(NSString *)transcription;
 
 @end
 
-@interface ManageWordViewController : UITableViewController
+@interface ANEditWordViewController : UITableViewController
 
 @property (nonatomic, strong) id <ManageWordWordViewControllerDelegate> delegate;
 
