@@ -3,9 +3,10 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Words List View Controller-->
+        <!--Words-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="WordsListViewController" sceneMemberID="viewController">
@@ -127,7 +128,8 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="WC2-ir-piW">
+                    <navigationItem key="navigationItem" title="Words" id="WC2-ir-piW">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="AG3-vD-vnX"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="JB1-fW-X4F">
                             <connections>
                                 <action selector="addWordAction:" destination="BYZ-38-t0r" id="vzo-O7-ih2"/>
@@ -138,7 +140,7 @@
                     <connections>
                         <outlet property="searchBar" destination="AP6-LH-8wy" id="cFR-de-CDl"/>
                         <outlet property="wordsTableView" destination="FAB-vM-ij4" id="jPF-3f-Ca1"/>
-                        <segue destination="6wX-YQ-qER" kind="presentation" identifier="ManageWordViewControllerSegue" id="aVl-PJ-rGD"/>
+                        <segue destination="SXj-5w-xSw" kind="show" identifier="EditWordViewControllerSegue" id="M9n-sq-keZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -148,7 +150,7 @@
         <!--Add word-->
         <scene sceneID="dT2-1U-Ub5">
             <objects>
-                <tableViewController storyboardIdentifier="ManageWordViewControllerStoryboardID" id="SXj-5w-xSw" customClass="ManageWordViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ManageWordViewControllerStoryboardID" id="SXj-5w-xSw" customClass="ANEditWordViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" keyboardDismissMode="onDrag" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="50" sectionFooterHeight="28" id="uEG-kc-0eM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -402,6 +404,66 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="uU9-bw-8Oo">
+                                <cells>
+                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AudioCellIdentifier" rowHeight="63" id="vk5-QP-QlN">
+                                        <rect key="frame" x="0.0" y="375" width="375" height="63"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vk5-QP-QlN" id="z8m-eY-mI5">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SaN-xV-hYv">
+                                                    <rect key="frame" x="28" y="8" width="327" height="47"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" red="0.15873579545454541" green="0.15873579545454541" blue="0.15873579545454541" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="SaN-xV-hYv" firstAttribute="leading" secondItem="z8m-eY-mI5" secondAttribute="leading" constant="28" id="D8Z-cl-aHh"/>
+                                                <constraint firstItem="SaN-xV-hYv" firstAttribute="top" secondItem="z8m-eY-mI5" secondAttribute="top" constant="8" id="K9n-jK-AgC"/>
+                                                <constraint firstAttribute="bottom" secondItem="SaN-xV-hYv" secondAttribute="bottom" constant="8" id="OAy-fu-GRJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="SaN-xV-hYv" secondAttribute="trailing" constant="20" id="Pct-L3-JlX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FindAudioCellIdentifier" rowHeight="63" id="qkE-j7-eIq">
+                                        <rect key="frame" x="0.0" y="438" width="375" height="63"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qkE-j7-eIq" id="oum-IL-zWi">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mM4-KI-kcd">
+                                                    <rect key="frame" x="28" y="10" width="319" height="43"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="sZB-Cb-4kX"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                    <state key="normal" title="Find Audio" backgroundImage="Green"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="sZB-Cb-4kX"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <connections>
+                                                        <action selector="findAudioButtonAction:" destination="SXj-5w-xSw" eventType="touchUpInside" id="tu4-Hg-ukc"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="mM4-KI-kcd" secondAttribute="trailing" constant="28" id="IGK-8L-ZnU"/>
+                                                <constraint firstItem="mM4-KI-kcd" firstAttribute="top" secondItem="oum-IL-zWi" secondAttribute="top" constant="10" id="b52-hu-VGP"/>
+                                                <constraint firstItem="mM4-KI-kcd" firstAttribute="leading" secondItem="oum-IL-zWi" secondAttribute="leading" constant="28" id="bCU-1f-PZc"/>
+                                                <constraint firstAttribute="bottom" secondItem="mM4-KI-kcd" secondAttribute="bottom" constant="10" id="uxo-v1-Xhp"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="SXj-5w-xSw" id="Sea-z8-QpV"/>
@@ -409,11 +471,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add word" id="dG4-QK-1pY">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Cyy-uh-i8d">
-                            <connections>
-                                <action selector="cancelButtonAction:" destination="SXj-5w-xSw" id="WMk-z2-bEB"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Luw-Jo-M2j"/>
                         <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="dxK-Qt-Xir">
                             <connections>
                                 <action selector="doneButtonAction:" destination="SXj-5w-xSw" id="edM-s2-tWu"/>
@@ -423,13 +481,86 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="originalWordTextField" destination="4Dm-e3-rcR" id="Gng-7F-mTd"/>
+                        <outlet property="selectedAudioLabel" destination="SaN-xV-hYv" id="RHA-Z6-HUr"/>
                         <outlet property="transcriptionTextField" destination="gC6-sY-ipD" id="DI2-eP-3Cd"/>
                         <outlet property="translationTextField" destination="fRK-kO-f4S" id="30s-qK-EMa"/>
+                        <segue destination="PMd-PX-Ue4" kind="show" identifier="SelectAudioViewControllerSegue" id="zl2-cO-1EH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IcD-Gw-bWR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2672.5" y="1759.5"/>
+            <point key="canvasLocation" x="2060.5" y="1759.5"/>
+        </scene>
+        <!--Select Audio-->
+        <scene sceneID="MdW-zK-ZSP">
+            <objects>
+                <tableViewController id="PMd-PX-Ue4" customClass="ANPickAudioController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="59" sectionHeaderHeight="28" sectionFooterHeight="28" id="VYN-fc-2se">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="AudioPickingCellIdentifier" rowHeight="50" id="s0r-h7-R5f" customClass="ANPickAudioCell">
+                                <rect key="frame" x="0.0" y="92" width="375" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s0r-h7-R5f" id="a4w-WE-Wf0">
+                                    <rect key="frame" x="0.0" y="0.0" width="336" height="49.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icu-ZW-83M">
+                                            <rect key="frame" x="56" y="4" width="264" height="41.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="42" id="A3K-I5-ulD"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9sN-Pk-maj">
+                                            <rect key="frame" x="12" y="10" width="40" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="2t0-SS-HHa"/>
+                                            </constraints>
+                                            <state key="normal" title="Play"/>
+                                            <connections>
+                                                <action selector="playButtonAction:" destination="s0r-h7-R5f" eventType="touchUpInside" id="QTs-kp-rMk"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="icu-ZW-83M" firstAttribute="leading" secondItem="9sN-Pk-maj" secondAttribute="trailing" constant="4" id="5vj-9g-76R"/>
+                                        <constraint firstAttribute="bottom" secondItem="icu-ZW-83M" secondAttribute="bottom" constant="4" id="8Aq-2V-GRR"/>
+                                        <constraint firstItem="9sN-Pk-maj" firstAttribute="leading" secondItem="a4w-WE-Wf0" secondAttribute="leadingMargin" constant="4" id="TSf-aQ-Cw5"/>
+                                        <constraint firstItem="9sN-Pk-maj" firstAttribute="centerY" secondItem="a4w-WE-Wf0" secondAttribute="centerY" id="jW5-wf-ii7"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="icu-ZW-83M" secondAttribute="trailing" constant="8" id="uXV-o9-PK7"/>
+                                        <constraint firstItem="icu-ZW-83M" firstAttribute="top" secondItem="a4w-WE-Wf0" secondAttribute="top" constant="4" id="ucp-wZ-VAR"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="audioFileNameLabel" destination="icu-ZW-83M" id="kRS-KM-SAI"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="PMd-PX-Ue4" id="Wy0-Ls-VII"/>
+                            <outlet property="delegate" destination="PMd-PX-Ue4" id="qHE-a3-AQb"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Select Audio" id="ssX-I4-nVH">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="c9e-eT-aSG"/>
+                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="WxT-66-IGd">
+                            <connections>
+                                <action selector="doneButtonAction:" destination="PMd-PX-Ue4" id="p2s-jo-9ri"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="doneButton" destination="WxT-66-IGd" id="gi1-iG-ZG5"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9T6-tO-ZZV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2587.5" y="1754.5"/>
         </scene>
         <!--Quiz-->
         <scene sceneID="qC6-pL-2FE">
@@ -601,27 +732,10 @@
             </objects>
             <point key="canvasLocation" x="700.5" y="902.5"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="xv4-fH-LTV">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6wX-YQ-qER" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MxQ-Qc-a1C">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="SXj-5w-xSw" kind="relationship" relationship="rootViewController" id="QFh-NX-AEk"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Fmh-SE-729" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2085.5" y="1759.5"/>
-        </scene>
     </scenes>
     <resources>
         <image name="Background" width="640" height="1136"/>
         <image name="Button" width="250" height="58"/>
+        <image name="Green" width="250" height="58"/>
     </resources>
 </document>

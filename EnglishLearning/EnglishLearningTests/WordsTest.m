@@ -7,13 +7,13 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "ManageWordViewController.h"
+#import "ANEditWordViewController.h"
 
 @interface WordsTest : XCTestCase
-@property (nonatomic, strong) ManageWordViewController* viewController;
+@property (nonatomic, strong) ANEditWordViewController* viewController;
 @end
 
-@interface ManageWordViewController (UnitTests)
+@interface ANEditWordViewController (UnitTests)
 @property (nonatomic) IBOutlet UITextField *originalWordTextField;
 @property (nonatomic) IBOutlet UITextField *translationTextField;
 @property (nonatomic) IBOutlet UITextField *transcriptionTextField;

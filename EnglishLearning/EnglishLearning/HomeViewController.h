@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@class Model;
+@class ANCoreDataManager;
 
 @interface HomeViewController : UIViewController
 
-@property (nonatomic, strong) Model* model;
+@property (nonatomic, strong) ANCoreDataManager* model;
 
 @end

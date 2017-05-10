@@ -7,10 +7,10 @@
 //
 
 #import "HomeViewController.h"
-#import "Model.h"
+#import "ANCoreDataManager.h"
 
-static NSString* const kWordsQuizSegueIdentifier = @"WordsQuizSegueIdentifier";
-static NSString* const kWordsListSegueIdentifier = @"WordsListSegueIdentifier";
+static NSString* const ANWordsQuizSegueIdentifier = @"WordsQuizSegueIdentifier";
+static NSString* const ANWordsListSegueIdentifier = @"WordsListSegueIdentifier";
 
 @interface HomeViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -33,10 +33,8 @@ static NSString* const kWordsListSegueIdentifier = @"WordsListSegueIdentifier";
     [self.quizButton setBackgroundImage:image forState:UIControlStateNormal];
 }
 
-
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     UIViewController* destinationController = segue.destinationViewController;
@@ -48,12 +46,12 @@ static NSString* const kWordsListSegueIdentifier = @"WordsListSegueIdentifier";
 
 - (IBAction)quizButtonAction:(id)sender
 {
-    [self performSegueWithIdentifier:kWordsQuizSegueIdentifier sender:self];
+    [self performSegueWithIdentifier:ANWordsQuizSegueIdentifier sender:self];
 }
 
 - (IBAction)wordsListButtonAction:(id)sender
 {
-    [self performSegueWithIdentifier:kWordsListSegueIdentifier sender:self];
+    [self performSegueWithIdentifier:ANWordsListSegueIdentifier sender:self];
 }
 
 @end

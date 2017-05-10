@@ -7,27 +7,26 @@
 //
 
 #import "WordsListViewController.h"
-#import "Model.h"
+#import "ANCoreDataManager.h"
 #import "AppDelegate.h"
 #import <CoreData/CoreData.h>
 #import "Word.h"
 #import "WordsListTableViewCell.h"
-#import "ManageWordViewController.h"
+#import "ANEditWordViewController.h"
 
-static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordViewControllerSegue";
+static NSString* const kANManageWordViewControllerSegueIdentifier = @"EditWordViewControllerSegue";
 
-@interface WordsListViewController () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate, ManageWordWordViewControllerDelegate>
+@interface WordsListViewController () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UISearchBarDelegate, ANEditWordViewControllerDelegate, UINavigationControllerDelegate>
 
-@property (nonatomic, strong) Model* model;
-@property (strong, nonatomic) IBOutlet UITableView *wordsTableView;
+@property (nonatomic, strong) ANCoreDataManager* model;
+@property (strong, nonatomic) IBOutlet UITableView* wordsTableView;
 @property (nonatomic, strong) NSFetchedResultsController* fetchResultController;
 
-@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) IBOutlet UISearchBar* searchBar;
 
 @property (nonatomic) Word* editedWord;
 
-@property (nonatomic, weak) ManageWordViewController* createWordViewController;
-@property (nonatomic, weak) ManageWordViewController* editWordViewController;
+@property (nonatomic, weak) ANEditWordViewController* editWordViewController;
 
 @end
 
@@ -36,68 +35,62 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.model = appDelegate.model;
-    
+
     self.wordsTableView.estimatedRowHeight = 74.0;
     self.wordsTableView.rowHeight = UITableViewAutomaticDimension;
-    
-    self.wordsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
+    self.wordsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero]; \
+
+    self.navigationController.delegate = self;
 }
 
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:kManageWordViewControllerSegueIdentifier])
+    if ([segue.identifier isEqualToString:kANManageWordViewControllerSegueIdentifier])
     {
-        UINavigationController* navigationController = segue.destinationViewController;
-
-        ManageWordViewController *viewController = (ManageWordViewController *)navigationController.topViewController;
-        viewController.delegate = self;
-
+        ANEditWordViewController* viewController = (ANEditWordViewController*)segue.destinationViewController;
         if (self.editedWord != nil)
         {
             viewController.originalWord = self.editedWord.originalWord;
-            viewController.translation = self.editedWord.translatedWord;
-            viewController.transcription = self.editedWord.trnascrption;
-            self.editWordViewController = viewController;
+            viewController.translation = self.editedWord.translation;
+            viewController.transcription = self.editedWord.transcription;
         }
-        else
-        {
-            self.createWordViewController = viewController;
-        }
+
+        viewController.delegate = self;
     }
 }
 
 #pragma mark - UITableView
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
 {
     return self.fetchResultController.sections.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = self.fetchResultController.sections[section];
     return sectionInfo.numberOfObjects;
 }
 
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     Word* word = [self.fetchResultController objectAtIndexPath:indexPath];
     WordsListTableViewCell* theCell = [tableView dequeueReusableCellWithIdentifier:@"WordsListTableViewCellIdentifier"];
 
     [self configureCell:theCell withWord:word];
-    
+
     return theCell;
 }
 
 - (void)configureCell:(WordsListTableViewCell*)theCell withWord:(Word*)word
 {
     theCell.mainWordLabel.text = word.originalWord;
-
 
     if (word.totalAnswers.integerValue > 0)
     {
@@ -109,36 +102,32 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
             percentRation = (correctAnswers / totalAnswers) * 100.0;
         }
 
-        theCell.infoLabel.text = [NSString stringWithFormat:@"%ld/%ld (%.0f%%)", correctAnswers, totalAnswers, percentRation];
+        theCell.infoLabel.text = [NSString stringWithFormat:@"%ld/%ld (%.0f%%)", (long)correctAnswers, (long)totalAnswers, percentRation];
     }
     else
     {
         theCell.infoLabel.text = nil;
     }
-    
-    theCell.translationLabel.text = word.translatedWord;
+
+    theCell.translationLabel.text = word.translation;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     Word* word = [self.fetchResultController objectAtIndexPath:indexPath];
-
     self.editedWord = word;
-    self.view.userInteractionEnabled = NO;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self performSegueWithIdentifier:@"ManageWordViewControllerSegue" sender:self];
-        self.view.userInteractionEnabled = YES;
-    });
+
+    [self performSegueWithIdentifier:kANManageWordViewControllerSegueIdentifier sender:self];
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath
 {
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
@@ -151,7 +140,12 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
 
 - (IBAction)addWordAction:(id)sender
 {
-    [self performSegueWithIdentifier:@"ManageWordViewControllerSegue" sender:self];
+//    self.editedWord = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Word class]) inManagedObjectContext:self.model.managedObjectContext];
+//    self.editedWord.user = self.model.user;
+//
+//    self.editedWord.creationDate = [NSDate date];
+
+    [self performSegueWithIdentifier:kANManageWordViewControllerSegueIdentifier sender:self];
 }
 
 #pragma mark - fetchResultController
@@ -161,17 +155,17 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
     if (_fetchResultController == nil)
     {
         NSFetchRequest* fetchRequest = [NSFetchRequest new];
-        
+
         NSEntityDescription* entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:self.model.managedObjectContext];
         [fetchRequest setEntity:entity];
         NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"originalWord" ascending:YES selector:@selector(caseInsensitiveCompare:)];
 
         [fetchRequest setSortDescriptors:@[sortDescriptor]];
 
-        
+
         _fetchResultController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.model.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         _fetchResultController.delegate = self;
-        
+
         NSError* error = nil;
         if (![_fetchResultController performFetch:&error])
         {
@@ -179,21 +173,22 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
             abort();
         }
     }
-    
+
     return _fetchResultController;
 }
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+- (void)controllerWillChangeContent:(NSFetchedResultsController*)controller
 {
     [self.wordsTableView beginUpdates];
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+- (void)controller:(NSFetchedResultsController*)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath*)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath*)newIndexPath
 {
 
-    UITableView *tableView = self.wordsTableView;
+    UITableView* tableView = self.wordsTableView;
 
-    switch(type) {
+    switch (type)
+    {
 
         case NSFetchedResultsChangeInsert:
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -221,50 +216,51 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
 
 #pragma mark - ManageWordWordViewControllerDelegate
 
-- (void)manageWordViewControllerDidCandel:(ManageWordViewController *)viewController
+- (void)editWordViewControllerDidCandel:(ANEditWordViewController*)viewController
 {
-    if (viewController == self.editWordViewController)
+    if (self.editedWord.originalWord.length == 0 || self.editedWord.translation.length == 0)
     {
-         self.editedWord = nil;
+        [self.model.managedObjectContext deleteObject:self.editedWord];
     }
-
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)manageWordViewController:(ManageWordViewController*)viewController didAddAWord:(NSString *)originalWord withTranlation:(NSString *)translation andTranscription:(NSString *)transcription
-{
-    Word* word = nil;
-
-    if (viewController == self.createWordViewController)
-    {
-        word = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Word class]) inManagedObjectContext:self.model.managedObjectContext];
-        word.user = self.model.user;
-        word.identifier = [[NSUUID UUID] UUIDString];
-    }
-    else if (viewController == self.editWordViewController && self.editedWord != nil)
-    {
-        word = self.editedWord;
-        self.editedWord = nil;
-    }
-
-    word.originalWord = originalWord;
-    word.translatedWord = translation;
-    word.trnascrption = transcription;
 
     [self.model saveContext];
+    self.editedWord = nil;
+}
 
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (void)editWordViewController:(ANEditWordViewController*)viewController didFinishWithOriginalWord:(NSString*)originalWord translation:(NSString*)translation transcription:(NSString*)transcription audioFilePath:(NSURL*)audioFilePath
+{
+    Word* word = self.editedWord;
+
+    if (self.editedWord == nil)
+    {
+        word = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:self.model.managedObjectContext];
+        word.creationDate = [NSDate date];
+    }
+
+    // fill word
+    word.originalWord = originalWord;
+    word.transcription = transcription;
+    word.translation = translation;
+    word.audioFilePath = [audioFilePath path];
+
+    // save context
+    [self.model saveContext];
+
+    // nullify property
+    self.editedWord = nil;
+
+    [self.navigationController popToViewController:self animated:YES];
 }
 
 #pragma mark - UISearchBar
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+- (void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)searchText
 {
     NSString* searchString = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     [self makeFilteringForSearchText:searchString];
 }
 
-- (void)makeFilteringForSearchText:(NSString *)searchString
+- (void)makeFilteringForSearchText:(NSString*)searchString
 {
     NSPredicate* predicate = nil;
 
@@ -281,16 +277,16 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
     {
         NSLog(@"%@", error);
     }
-    
+
     [self.wordsTableView reloadData];
 }
 
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+- (void)searchBarTextDidBeginEditing:(UISearchBar*)searchBar
 {
     searchBar.showsCancelButton = YES;
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+- (void)searchBarCancelButtonClicked:(UISearchBar*)searchBar
 {
     searchBar.showsCancelButton = NO;
     searchBar.text = nil;
@@ -299,9 +295,19 @@ static NSString* const kManageWordViewControllerSegueIdentifier = @"ManageWordVi
     [searchBar resignFirstResponder];
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+- (void)searchBarSearchButtonClicked:(UISearchBar*)searchBar
 {
     [searchBar resignFirstResponder];
+}
+
+#pragma mark - UINavigationDelegate
+
+- (void)navigationController:(UINavigationController*)navigationController willShowViewController:(UIViewController*)viewController animated:(BOOL)animated
+{
+    if (viewController == self)
+    {
+        self.editedWord = nil;
+    }
 }
 
 @end

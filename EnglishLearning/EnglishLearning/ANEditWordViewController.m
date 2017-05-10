@@ -8,21 +8,31 @@
 
 #import "ANEditWordViewController.h"
 #import "Word.h"
+#import "ANEditWordViewController.h"
+#import "ANPickAudioController.h"
 
-@interface ANEditWordViewController () <UITextFieldDelegate>
-@property (nonatomic) IBOutlet UITextField *originalWordTextField;
-@property (nonatomic) IBOutlet UITextField *translationTextField;
-@property (nonatomic) IBOutlet UITextField *transcriptionTextField;
+static NSString* const kANPickAudioControllerSegue = @"SelectAudioViewControllerSegue";
+
+
+@interface ANEditWordViewController () <UITextFieldDelegate, ANPickAudioViewControllerDelegate>
+
+@property (nonatomic) IBOutlet UITextField* originalWordTextField;
+@property (nonatomic) IBOutlet UITextField* translationTextField;
+@property (nonatomic) IBOutlet UITextField* transcriptionTextField;
+@property (nonatomic) IBOutlet UILabel* selectedAudioLabel;
+@property (nonatomic) IBOutlet UIButton* findAudioButton;
+
+@property (nonatomic, copy) NSArray* audioFileURLsArray;
 
 @end
 
-@implementation ManageWordViewController
+@implementation ANEditWordViewController
+
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.estimatedRowHeight = 50;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
 
     UIView* view = [[UIView alloc] initWithFrame:self.tableView.bounds];
     [view addSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background"]]];
@@ -41,7 +51,20 @@
     self.originalWordTextField.text = self.originalWord;
     self.translationTextField.text = self.translation;
     self.transcriptionTextField.text = self.transcription;
+    self.selectedAudioLabel.text = [self.audioFileURL lastPathComponent];
 }
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
+{
+    ANPickAudioController* controller = (ANPickAudioController*)segue.destinationViewController;
+
+    controller.delegate = self;
+    controller.audioPathesArray = self.audioFileURLsArray;
+}
+
+#pragma mark IBActions
 
 - (IBAction)doneButtonAction:(id)sender
 {
@@ -49,13 +72,13 @@
 
     if (self.originalWord.length > 0 && self.translation.length > 0)
     {
-        [self.delegate manageWordViewController:self didAddAWord:self.originalWord withTranlation:self.translation andTranscription:self.transcription];
+        [self.delegate editWordViewController:self didFinishWithOriginalWord:self.originalWord translation:self.translation transcription:self.transcription audioFilePath:self.audioFileURL];
     }
     else
     {
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Not all required field filled" message:@"You need to enter all required data" preferredStyle:UIAlertControllerStyleAlert];
 
-        UIAlertAction* okayAction =  [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        UIAlertAction* okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:okayAction];
 
         [self presentViewController:alert animated:YES completion:nil];
@@ -64,15 +87,35 @@
 
 - (IBAction)cancelButtonAction:(id)sender
 {
-    [self.delegate manageWordViewControllerDidCandel:self];
+    [self.delegate editWordViewControllerDidCandel:self];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)findAudioButtonAction:(id)sender
+{
+    [self downloadWordAudio];
+}
+
+#pragma mark - private
+
+- (void)downloadWordAudio
+{
+    [[ANCoreDataManager sharedDataManager].audioManager downloadWord:self.originalWord withCompletionBlock:^(id resultObject, NSError* error) {
+
+        if ([resultObject isKindOfClass:[NSArray class]] && [resultObject count] > 0)
+        {
+            self.audioFileURLsArray = resultObject;
+            [self performSegueWithIdentifier:kANPickAudioControllerSegue sender:self];
+        }
+    }];
 }
 
 #pragma mark - UITextFieldDelegate
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
+- (BOOL)textFieldShouldReturn:(UITextField*)textField
 {
     [textField resignFirstResponder];
-    
+
     if (textField == self.originalWordTextField)
     {
         [self.translationTextField becomeFirstResponder];
@@ -85,7 +128,7 @@
     return YES;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
+- (void)textFieldDidEndEditing:(UITextField*)textField
 {
     if (textField == self.originalWordTextField)
     {
@@ -98,6 +141,23 @@
     else if (textField == self.translationTextField)
     {
         self.translation = [self.translationTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    }
+}
+
+#pragma mark - ANPickAudioController delegate
+
+- (void)pickAudioViewController:(ANPickAudioController*)viewController didPickAudioAtURL:(NSURL*)selectedAudioUrl
+{
+    [self.navigationController popToViewController:self animated:YES];
+
+    // remove non used URLs
+    NSFileManager* fm = [NSFileManager defaultManager];
+    for (NSURL* audioFileURL in self.audioFileURLsArray)
+    {
+        if (audioFileURL != selectedAudioUrl)
+        {
+            [fm removeItemAtURL:audioFileURL error:NULL];
+        }
     }
 }
 

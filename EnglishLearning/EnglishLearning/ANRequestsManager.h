@@ -8,14 +8,14 @@
 
 #import "AFHTTPSessionManager.h"
 
-typedef void(^ANRequestManagerCompletionBlock)(id resultObject, NSError* error);
+typedef void(^ANCompletionBlock)(id resultObject, NSError* error);
 
 @interface ANRequestsManager : NSObject
 
 + (instancetype)sharedRequestManager;
 
-- (void)requestWordAudioFileNamesForWord:(NSString*)word withCompletionBlock:(ANRequestManagerCompletionBlock)completion;
-- (void)requestAudioFileUrlsForFileNames:(NSArray*)fileNames withCompletionBlock:(ANRequestManagerCompletionBlock)completion;
-- (void)downloadFilesAtURLs:(NSArray*)urlsArray withCompletionBlock:(ANRequestManagerCompletionBlock)completion;
+- (void)requestAudioFileNamesForWord:(NSString*)word withCompletionBlock:(ANCompletionBlock)completion;
+- (void)requestAudioFileUrlsForFileNames:(NSArray*)fileNames withCompletionBlock:(ANCompletionBlock)completion;
+- (void)downloadFilesAtURLs:(NSArray*)urlsArray withCompletionBlock:(ANCompletionBlock)completion;
 
 @end

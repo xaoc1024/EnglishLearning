@@ -2,7 +2,7 @@
 //  Word+CoreDataProperties.m
 //  Words Learning
 //
-//  Created by Andriy Zhuk on 2/28/16.
+//  Created by Andriy Zhuk on 3/18/16.
 //  Copyright © 2016 azhuk. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,13 +13,15 @@
 
 @implementation Word (CoreDataProperties)
 
+@dynamic audioDownloadingCompleted;
+@dynamic audioFilePath;
+@dynamic correctAnswers;
+@dynamic creationDate;
 @dynamic identifier;
 @dynamic originalWord;
-@dynamic translatedWord;
-@dynamic trnascrption;
-@dynamic creationDate;
 @dynamic totalAnswers;
-@dynamic correctAnswers;
+@dynamic transcription;
+@dynamic translation;
 @dynamic user;
 
 @end

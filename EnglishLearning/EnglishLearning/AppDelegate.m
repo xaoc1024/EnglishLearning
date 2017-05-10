@@ -7,27 +7,30 @@
 //
 
 #import "AppDelegate.h"
-#import "Model.h"
+#import "ANCoreDataManager.h"
 #import "HomeViewController.h"
 #import "ANRequestsManager.h"
-#import "ANWordAudioDataRequestManager.h"
+#import "ANWordAudioManager.h"
 
 @interface AppDelegate ()
-@property (nonatomic, strong, readwrite) Model* model;
+@property (nonatomic, strong, readwrite) ANCoreDataManager* model;
 @end
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.model = [Model new];
+- (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
+{
+    self.model = [ANCoreDataManager new];
 
-    ANWordAudioDataRequestManager* manager = [ANWordAudioDataRequestManager new];
-    [manager downloadWord:@"ubiquitous"];
-    
+    ANWordAudioManager* manager = [ANWordAudioManager new];
+    [manager downloadWord:@"word" withCompletionBlock:^(id resultObject, NSError* error) {
+
+    }];
+
     return YES;
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application
+- (void)applicationWillTerminate:(UIApplication*)application
 {
     [self.model saveContext];
 }

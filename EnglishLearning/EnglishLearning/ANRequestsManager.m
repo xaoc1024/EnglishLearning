@@ -9,10 +9,11 @@
 #import "ANRequestsManager.h"
 #import "AFURLRequestSerialization.h"
 
-static NSString* const _Nonnull kANWiktionaryBaseURLPath = @"https://en.wiktionary.org/w/api.php";
-static NSString* const _Nonnull kANCommonsBaseURLPath = @"https://commons.wikimedia.org/w/api.php";
+static NSString* const kANWiktionaryBaseURLPath = @"https://en.wiktionary.org/w/api.php";
+static NSString* const kANCommonsBaseURLPath = @"https://commons.wikimedia.org/w/api.php";
 
 @interface ANRequestsManager ()
+
 @property (nonatomic) AFHTTPSessionManager* wiktionaryManager;
 @property (nonatomic) AFHTTPSessionManager* commonsManager;
 
@@ -51,7 +52,7 @@ static NSString* const _Nonnull kANCommonsBaseURLPath = @"https://commons.wikime
     return self;
 }
 
-- (void)requestWordAudioFileNamesForWord:(NSString*)word withCompletionBlock:(ANRequestManagerCompletionBlock)completion
+- (void)requestAudioFileNamesForWord:(NSString*)word withCompletionBlock:(ANCompletionBlock)completion
 {
     NSMutableDictionary* parameters = [NSMutableDictionary new];
     SAFE_SET_OBJECT(parameters, @"action", @"query");
@@ -69,7 +70,7 @@ static NSString* const _Nonnull kANCommonsBaseURLPath = @"https://commons.wikime
     }];
 }
 
-- (void)requestAudioFileUrlsForFileNames:(NSArray*)fileNames withCompletionBlock:(ANRequestManagerCompletionBlock)completion
+- (void)requestAudioFileUrlsForFileNames:(NSArray*)fileNames withCompletionBlock:(ANCompletionBlock)completion
 {
     NSString* allFileNames = [fileNames componentsJoinedByString:@"|"];
     NSMutableDictionary* parameters = [NSMutableDictionary new];
@@ -88,35 +89,57 @@ static NSString* const _Nonnull kANCommonsBaseURLPath = @"https://commons.wikime
     }];
 }
 
-- (void)downloadFilesAtURLs:(NSArray*)urlsArray withCompletionBlock:(ANRequestManagerCompletionBlock)completion
+- (void)downloadFilesAtURLs:(NSArray*)urlsArray withCompletionBlock:(ANCompletionBlock)completion
 {
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+
+    NSMutableArray* pathsArray = [NSMutableArray new];
+    dispatch_group_t audioGroup = dispatch_group_create();
+    __block NSError* downloadingError = nil;
 
     for (NSString* urlPath in urlsArray)
     {
         NSURL *URL = [NSURL URLWithString:urlPath];
         NSURLRequest *request = [NSURLRequest requestWithURL:URL];
 
-        __block NSURLSessionDownloadTask *downloadTask = nil;
+        if (URL != nil)
+        {
+            dispatch_group_enter(audioGroup);
 
-        downloadTask = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
-            return [self.audiosURL URLByAppendingPathComponent:[response suggestedFilename]];
-        } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-            if (error != nil)
-            {
-                NSLog(@"Error: %@", error);
-            }
-            
-            NSLog(@"File downloaded to: %@", filePath);
-            [self.downloadTasks removeObject:downloadTask];
-            completion(filePath, error);
-        }];
+            __block NSURLSessionDownloadTask *downloadTask = nil;
 
-        [downloadTask resume];
+            downloadTask = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+                return [self.audiosURL URLByAppendingPathComponent:[response suggestedFilename]];
+            } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+                if (error == nil)
+                {
+                    [pathsArray addObject:filePath];
+                }
+                else
+                {
+                    downloadingError = error;
+                    NSLog(@"Error: %@", error);
+                }
+                
+                NSLog(@"File downloaded to: %@", filePath);
 
-        [self.downloadTasks addObject:downloadTask];
+                [self.downloadTasks removeObject:downloadTask];
+
+                dispatch_group_leave(audioGroup);
+            }];
+
+            [downloadTask resume];
+            [self.downloadTasks addObject:downloadTask];
+        }
     }
+
+    dispatch_group_notify(audioGroup, dispatch_get_main_queue(),^{
+        if (completion != nil)
+        {
+            completion(pathsArray, downloadingError);
+        }
+    });
 }
 
 #pragma mark - getters

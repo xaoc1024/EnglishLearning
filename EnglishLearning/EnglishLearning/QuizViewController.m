@@ -7,7 +7,7 @@
 //
 
 #import "QuizViewController.h"
-#import "Model.h"
+#import "ANCoreDataManager.h"
 #import "Word.h"
 #import "AnswersTableViewCell.h"
 #import "WordsQuizTopTableViewCell.h"
@@ -168,7 +168,7 @@ static const NSInteger kNumberOfWordsInTest = 4;
     {
         WordsQuizTopTableViewCell* theCell = [tableView dequeueReusableCellWithIdentifier:kTopCellIdentifier forIndexPath:indexPath];
         theCell.questionLabel.text = self.questionWord.originalWord;
-        theCell.transcriptionLabel.text = self.questionWord.trnascrption;
+        theCell.transcriptionLabel.text = self.questionWord.transcription;
         cell = theCell;
     }
     else if (indexPath.section == 1)
@@ -177,7 +177,7 @@ static const NSInteger kNumberOfWordsInTest = 4;
         
         AnswersTableViewCell* theCell = [tableView dequeueReusableCellWithIdentifier:kAnswersCellIdentifier forIndexPath:indexPath];
         [theCell resetAppearance];
-        theCell.answerLabel.text = word.translatedWord;
+        theCell.answerLabel.text = word.translation;
         cell = theCell;
     }
     else

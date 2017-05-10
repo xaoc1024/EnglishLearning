@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class Model;
+@class ANCoreDataManager;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (nonatomic, strong, readonly) Model* model;
+@property (nonatomic, strong, readonly) ANCoreDataManager* model;
 
 @end
 
