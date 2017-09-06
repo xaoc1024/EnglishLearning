@@ -7,7 +7,7 @@
 //
 
 #import "User.h"
-#import "Word.h"
+#import "Word+CoreDataClass.h"
 
 @implementation User
 

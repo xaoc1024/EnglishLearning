@@ -10,7 +10,6 @@
 #import "ANCoreDataManager.h"
 #import "HomeViewController.h"
 #import "ANRequestsManager.h"
-#import "ANWordAudioManager.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong, readwrite) ANCoreDataManager* model;
@@ -21,12 +20,6 @@
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
     self.model = [ANCoreDataManager new];
-
-    ANWordAudioManager* manager = [ANWordAudioManager new];
-    [manager downloadWord:@"word" withCompletionBlock:^(id resultObject, NSError* error) {
-
-    }];
-
     return YES;
 }
 

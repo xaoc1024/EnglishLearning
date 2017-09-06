@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15B42" minimumToolsVersion="Automatic">
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="words" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Word" inverseName="user" inverseEntity="Word" syncable="YES"/>
+    </entity>
+    <entity name="Word" representedClassName="Word" syncable="YES">
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="originalWord" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="translatedWord" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="trnascrption" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="words" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="User" positionX="-63" positionY="9" width="128" height="75"/>
+        <element name="Word" positionX="-63" positionY="-18" width="128" height="120"/>
+    </elements>
+</model>

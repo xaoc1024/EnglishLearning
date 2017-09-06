@@ -1,29 +1,28 @@
 //
 //  Word+CoreDataProperties.h
-//  Words Learning
+//  Words
 //
-//  Created by Andriy Zhuk on 3/18/16.
-//  Copyright © 2016 azhuk. All rights reserved.
+//  Created by Andriy Zhuk on 9/6/17.
+//  Copyright © 2017 azhuk. All rights reserved.
 //
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Word.h"
+#import "Word+CoreDataClass.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Word (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSNumber *audioDownloadingCompleted;
-@property (nullable, nonatomic, retain) NSString *audioFilePath;
-@property (nullable, nonatomic, retain) NSNumber *correctAnswers;
-@property (nullable, nonatomic, retain) NSDate *creationDate;
-@property (nullable, nonatomic, retain) NSString *identifier;
-@property (nullable, nonatomic, retain) NSString *originalWord;
-@property (nullable, nonatomic, retain) NSNumber *totalAnswers;
-@property (nullable, nonatomic, retain) NSString *transcription;
-@property (nullable, nonatomic, retain) NSString *translation;
++ (NSFetchRequest<Word *> *)fetchRequest;
+
+@property (nullable, nonatomic, copy) NSNumber *correctAnswers;
+@property (nullable, nonatomic, copy) NSDate *creationDate;
+@property (nullable, nonatomic, copy) NSString *identifier;
+@property (nullable, nonatomic, copy) NSString *originalWord;
+@property (nullable, nonatomic, copy) NSNumber *totalAnswers;
+@property (nullable, nonatomic, copy) NSString *transcription;
+@property (nullable, nonatomic, copy) NSString *translation;
 @property (nullable, nonatomic, retain) User *user;
 
 @end

@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5C0F47271C0A0B310053B22F /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0F47241C0A0B310053B22F /* Word.m */; };
-		5C0F47281C0A0B310053B22F /* Word+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0F47261C0A0B310053B22F /* Word+CoreDataProperties.m */; };
-		5C2AA34A1C10E00700D87F59 /* WordsListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2AA3481C10E00700D87F59 /* WordsListTableViewCell.m */; };
 		5C4388EB1C8C5CAB006CFDAE /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4388CA1C8C5CAB006CFDAE /* AFHTTPSessionManager.m */; };
 		5C4388EC1C8C5CAB006CFDAE /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4388CD1C8C5CAB006CFDAE /* AFNetworkReachabilityManager.m */; };
 		5C4388ED1C8C5CAB006CFDAE /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4388CF1C8C5CAB006CFDAE /* AFSecurityPolicy.m */; };
@@ -25,40 +22,34 @@
 		5C4388F71C8C5CAB006CFDAE /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4388E61C8C5CAB006CFDAE /* UIProgressView+AFNetworking.m */; };
 		5C4388F81C8C5CAB006CFDAE /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4388E81C8C5CAB006CFDAE /* UIRefreshControl+AFNetworking.m */; };
 		5C4388F91C8C5CAB006CFDAE /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4388EA1C8C5CAB006CFDAE /* UIWebView+AFNetworking.m */; };
-		5C4388FC1C8C5FBD006CFDAE /* ANRequestsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4388FB1C8C5FBD006CFDAE /* ANRequestsManager.m */; };
-		5C5957DB1C53E945003A1C86 /* ANEditWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5957DA1C53E945003A1C86 /* ANEditWordViewController.m */; };
-		5C77B44E1C8CBCC900EC2148 /* ANWordAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C77B44D1C8CBCC900EC2148 /* ANWordAudioManager.m */; };
+		5C8BB2161F60279200BDFAD1 /* AnswerButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB20C1F60278800BDFAD1 /* AnswerButtonCell.m */; };
+		5C8BB2171F60279400BDFAD1 /* AnswersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB20F1F60278800BDFAD1 /* AnswersTableViewCell.m */; };
+		5C8BB2181F6027AD00BDFAD1 /* AnswerButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C8BB20D1F60278800BDFAD1 /* AnswerButtonCell.xib */; };
+		5C8BB2191F6027AD00BDFAD1 /* AnswersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C8BB2101F60278800BDFAD1 /* AnswersTableViewCell.xib */; };
+		5C8BB21A1F6027AD00BDFAD1 /* WordsListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB2121F60278800BDFAD1 /* WordsListTableViewCell.m */; };
+		5C8BB21B1F6027AD00BDFAD1 /* WordsQuizTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB2141F60278800BDFAD1 /* WordsQuizTopTableViewCell.m */; };
+		5C8BB21C1F6027AD00BDFAD1 /* WordsQuizTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C8BB2151F60278800BDFAD1 /* WordsQuizTopTableViewCell.xib */; };
+		5C8BB21D1F6027D500BDFAD1 /* EnglishWords.csv in Resources */ = {isa = PBXBuildFile; fileRef = 5C8BB2091F60276600BDFAD1 /* EnglishWords.csv */; };
+		5C8BB21E1F6027E000BDFAD1 /* ANEditWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB1F21F60274C00BDFAD1 /* ANEditWordViewController.m */; };
+		5C8BB21F1F6027E000BDFAD1 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB1F41F60274C00BDFAD1 /* HomeViewController.m */; };
+		5C8BB2201F6027E000BDFAD1 /* QuizViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB1F61F60274C00BDFAD1 /* QuizViewController.m */; };
+		5C8BB2211F6027E000BDFAD1 /* WordsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB1F81F60274C00BDFAD1 /* WordsListViewController.m */; };
+		5C8BB2251F6027F000BDFAD1 /* EnglishLearning.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB2221F6027ED00BDFAD1 /* EnglishLearning.xcdatamodeld */; };
+		5C8BB2281F6027FE00BDFAD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C8BB2061F60275B00BDFAD1 /* LaunchScreen.storyboard */; };
+		5C8BB2291F6027FE00BDFAD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C8BB2071F60275B00BDFAD1 /* Main.storyboard */; };
 		5CAF68E61C00ACAF00795AD0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF68E51C00ACAF00795AD0 /* main.m */; };
 		5CAF68E91C00ACAF00795AD0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF68E81C00ACAF00795AD0 /* AppDelegate.m */; };
-		5CAF68EC1C00ACAF00795AD0 /* WordsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF68EB1C00ACAF00795AD0 /* WordsListViewController.m */; };
-		5CAF68EF1C00ACAF00795AD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CAF68ED1C00ACAF00795AD0 /* Main.storyboard */; };
-		5CAF68F21C00ACAF00795AD0 /* EnglishLearning.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF68F01C00ACAF00795AD0 /* EnglishLearning.xcdatamodeld */; };
 		5CAF68F41C00ACAF00795AD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5CAF68F31C00ACAF00795AD0 /* Assets.xcassets */; };
-		5CAF68F71C00ACAF00795AD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CAF68F51C00ACAF00795AD0 /* LaunchScreen.storyboard */; };
 		5CAF69021C00ACB000795AD0 /* WordsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF69011C00ACB000795AD0 /* WordsTest.m */; };
 		5CAF690D1C00ACB000795AD0 /* EnglishLearningUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF690C1C00ACB000795AD0 /* EnglishLearningUITests.m */; };
-		5CAF691F1C00BEDE00795AD0 /* ANCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF691E1C00BEDE00795AD0 /* ANCoreDataManager.m */; };
-		5CAF69211C00C86000795AD0 /* EnglishWords.csv in Resources */ = {isa = PBXBuildFile; fileRef = 5C19E3E81C00C3BB0088DE11 /* EnglishWords.csv */; };
-		5CAF692F1C021EDC00795AD0 /* WordsQuizTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF692D1C021EDC00795AD0 /* WordsQuizTopTableViewCell.m */; };
-		5CAF69301C021EDC00795AD0 /* WordsQuizTopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CAF692E1C021EDC00795AD0 /* WordsQuizTopTableViewCell.xib */; };
-		5CAF69351C021F4F00795AD0 /* AnswersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF69341C021F4F00795AD0 /* AnswersTableViewCell.m */; };
-		5CAF69381C021F8000795AD0 /* AnswersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CAF69371C021F8000795AD0 /* AnswersTableViewCell.xib */; };
-		5CAF693B1C022A5800795AD0 /* QuizViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF693A1C022A5800795AD0 /* QuizViewController.m */; };
-		5CB427091C94332300BA16D2 /* ANOggPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB427081C94332300BA16D2 /* ANOggPlayer.m */; };
-		5CB4270F1C94388000BA16D2 /* ANOggDecoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5CB4270E1C94388000BA16D2 /* ANOggDecoder.mm */; };
-		5CB427131C944D9400BA16D2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB427121C944D9400BA16D2 /* AudioToolbox.framework */; };
-		5CB427191C944ED600BA16D2 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB427181C944ED600BA16D2 /* CoreAudio.framework */; };
-		5CB427241C95A64D00BA16D2 /* Ogg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB427221C95A64D00BA16D2 /* Ogg.framework */; };
-		5CB427251C95A64D00BA16D2 /* Vorbis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB427231C95A64D00BA16D2 /* Vorbis.framework */; };
-		5CB4938A1C935EB700ED6D65 /* ANPickAudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB493891C935EB700ED6D65 /* ANPickAudioController.m */; };
-		5CB4938E1C93617C00ED6D65 /* ANPickAudioCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB4938D1C93617C00ED6D65 /* ANPickAudioCell.m */; };
-		5CC783B11C025188005AD1E3 /* AnswerButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC783AF1C025188005AD1E3 /* AnswerButtonCell.m */; };
-		5CC783B21C025188005AD1E3 /* AnswerButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CC783B01C025188005AD1E3 /* AnswerButtonCell.xib */; };
-		5CDC36221C0A0D1C00BD21EE /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDC361F1C0A0D1C00BD21EE /* User+CoreDataProperties.m */; };
-		5CDC36231C0A0D1C00BD21EE /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDC36211C0A0D1C00BD21EE /* User.m */; };
+		5CD383DC1F60238700BD4D1D /* ANCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD383CF1F60230000BD4D1D /* ANCoreDataManager.m */; };
+		5CD383DD1F60238C00BD4D1D /* ANRequestsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD383D11F60230000BD4D1D /* ANRequestsManager.m */; };
+		5CD383DE1F60239400BD4D1D /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD383D41F60230000BD4D1D /* User+CoreDataProperties.m */; };
+		5CD383DF1F60239700BD4D1D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD383D61F60230000BD4D1D /* User.m */; };
+		5CD383E01F6023A700BD4D1D /* Word+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD383D91F60230000BD4D1D /* Word+CoreDataClass.m */; };
+		5CD383E11F6023A900BD4D1D /* Word+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD383DB1F60230000BD4D1D /* Word+CoreDataProperties.m */; };
 		5CDC36291C0A0DB700BD21EE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CDC36281C0A0DB600BD21EE /* QuartzCore.framework */; };
 		5CDC362B1C0A0DBD00BD21EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CDC362A1C0A0DBD00BD21EE /* CoreGraphics.framework */; };
-		5CDC362F1C0A113000BD21EE /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDC362E1C0A113000BD21EE /* HomeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,13 +70,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5C0F47231C0A0B310053B22F /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Word.h; path = Models/Word/Word.h; sourceTree = "<group>"; };
-		5C0F47241C0A0B310053B22F /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Word.m; path = Models/Word/Word.m; sourceTree = "<group>"; };
-		5C0F47251C0A0B310053B22F /* Word+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Word+CoreDataProperties.h"; path = "Models/Word/Word+CoreDataProperties.h"; sourceTree = "<group>"; };
-		5C0F47261C0A0B310053B22F /* Word+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Word+CoreDataProperties.m"; path = "Models/Word/Word+CoreDataProperties.m"; sourceTree = "<group>"; };
-		5C19E3E81C00C3BB0088DE11 /* EnglishWords.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EnglishWords.csv; sourceTree = "<group>"; };
-		5C2AA3471C10E00700D87F59 /* WordsListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordsListTableViewCell.h; sourceTree = "<group>"; };
-		5C2AA3481C10E00700D87F59 /* WordsListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordsListTableViewCell.m; sourceTree = "<group>"; };
 		5C4388C91C8C5CAB006CFDAE /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		5C4388CA1C8C5CAB006CFDAE /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
 		5C4388CB1C8C5CAB006CFDAE /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
@@ -119,24 +103,36 @@
 		5C4388E81C8C5CAB006CFDAE /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		5C4388E91C8C5CAB006CFDAE /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		5C4388EA1C8C5CAB006CFDAE /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
-		5C4388FA1C8C5FBD006CFDAE /* ANRequestsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANRequestsManager.h; sourceTree = "<group>"; };
-		5C4388FB1C8C5FBD006CFDAE /* ANRequestsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANRequestsManager.m; sourceTree = "<group>"; };
-		5C5957D91C53E945003A1C86 /* ANEditWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANEditWordViewController.h; sourceTree = "<group>"; };
-		5C5957DA1C53E945003A1C86 /* ANEditWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANEditWordViewController.m; sourceTree = "<group>"; };
-		5C77B44C1C8CBCC900EC2148 /* ANWordAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANWordAudioManager.h; sourceTree = "<group>"; };
-		5C77B44D1C8CBCC900EC2148 /* ANWordAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANWordAudioManager.m; sourceTree = "<group>"; };
 		5C77B44F1C8CD11E00EC2148 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		5CA0E6B21C73731B00BD23BD /* EnglishLearning_2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EnglishLearning_2.xcdatamodel; sourceTree = "<group>"; };
+		5C8BB1F11F60274C00BDFAD1 /* ANEditWordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ANEditWordViewController.h; sourceTree = "<group>"; };
+		5C8BB1F21F60274C00BDFAD1 /* ANEditWordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ANEditWordViewController.m; sourceTree = "<group>"; };
+		5C8BB1F31F60274C00BDFAD1 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		5C8BB1F41F60274C00BDFAD1 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		5C8BB1F51F60274C00BDFAD1 /* QuizViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuizViewController.h; sourceTree = "<group>"; };
+		5C8BB1F61F60274C00BDFAD1 /* QuizViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuizViewController.m; sourceTree = "<group>"; };
+		5C8BB1F71F60274C00BDFAD1 /* WordsListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsListViewController.h; sourceTree = "<group>"; };
+		5C8BB1F81F60274C00BDFAD1 /* WordsListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsListViewController.m; sourceTree = "<group>"; };
+		5C8BB2061F60275B00BDFAD1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5C8BB2071F60275B00BDFAD1 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		5C8BB2091F60276600BDFAD1 /* EnglishWords.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = EnglishWords.csv; sourceTree = "<group>"; };
+		5C8BB20B1F60278800BDFAD1 /* AnswerButtonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnswerButtonCell.h; sourceTree = "<group>"; };
+		5C8BB20C1F60278800BDFAD1 /* AnswerButtonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnswerButtonCell.m; sourceTree = "<group>"; };
+		5C8BB20D1F60278800BDFAD1 /* AnswerButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerButtonCell.xib; sourceTree = "<group>"; };
+		5C8BB20E1F60278800BDFAD1 /* AnswersTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnswersTableViewCell.h; sourceTree = "<group>"; };
+		5C8BB20F1F60278800BDFAD1 /* AnswersTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnswersTableViewCell.m; sourceTree = "<group>"; };
+		5C8BB2101F60278800BDFAD1 /* AnswersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswersTableViewCell.xib; sourceTree = "<group>"; };
+		5C8BB2111F60278800BDFAD1 /* WordsListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsListTableViewCell.h; sourceTree = "<group>"; };
+		5C8BB2121F60278800BDFAD1 /* WordsListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsListTableViewCell.m; sourceTree = "<group>"; };
+		5C8BB2131F60278800BDFAD1 /* WordsQuizTopTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsQuizTopTableViewCell.h; sourceTree = "<group>"; };
+		5C8BB2141F60278800BDFAD1 /* WordsQuizTopTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsQuizTopTableViewCell.m; sourceTree = "<group>"; };
+		5C8BB2151F60278800BDFAD1 /* WordsQuizTopTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordsQuizTopTableViewCell.xib; sourceTree = "<group>"; };
+		5C8BB2231F6027ED00BDFAD1 /* EnglishLearning.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EnglishLearning.xcdatamodel; sourceTree = "<group>"; };
+		5C8BB2241F6027ED00BDFAD1 /* EnglishLearning_2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EnglishLearning_2.xcdatamodel; sourceTree = "<group>"; };
 		5CAF68E11C00ACAF00795AD0 /* Words.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Words.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CAF68E51C00ACAF00795AD0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5CAF68E71C00ACAF00795AD0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5CAF68E81C00ACAF00795AD0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5CAF68EA1C00ACAF00795AD0 /* WordsListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordsListViewController.h; sourceTree = "<group>"; };
-		5CAF68EB1C00ACAF00795AD0 /* WordsListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsListViewController.m; sourceTree = "<group>"; };
-		5CAF68EE1C00ACAF00795AD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5CAF68F11C00ACAF00795AD0 /* EnglishLearning.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EnglishLearning.xcdatamodel; sourceTree = "<group>"; };
 		5CAF68F31C00ACAF00795AD0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5CAF68F61C00ACAF00795AD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5CAF68F81C00ACAF00795AD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5CAF68FD1C00ACB000795AD0 /* EnglishLearningTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnglishLearningTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CAF69011C00ACB000795AD0 /* WordsTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordsTest.m; sourceTree = "<group>"; };
@@ -144,39 +140,20 @@
 		5CAF69081C00ACB000795AD0 /* EnglishLearningUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnglishLearningUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CAF690C1C00ACB000795AD0 /* EnglishLearningUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EnglishLearningUITests.m; sourceTree = "<group>"; };
 		5CAF690E1C00ACB000795AD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5CAF691D1C00BEDE00795AD0 /* ANCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANCoreDataManager.h; sourceTree = "<group>"; };
-		5CAF691E1C00BEDE00795AD0 /* ANCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANCoreDataManager.m; sourceTree = "<group>"; };
-		5CAF692C1C021EDC00795AD0 /* WordsQuizTopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordsQuizTopTableViewCell.h; sourceTree = "<group>"; };
-		5CAF692D1C021EDC00795AD0 /* WordsQuizTopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordsQuizTopTableViewCell.m; sourceTree = "<group>"; };
-		5CAF692E1C021EDC00795AD0 /* WordsQuizTopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordsQuizTopTableViewCell.xib; sourceTree = "<group>"; };
-		5CAF69331C021F4F00795AD0 /* AnswersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswersTableViewCell.h; sourceTree = "<group>"; };
-		5CAF69341C021F4F00795AD0 /* AnswersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswersTableViewCell.m; sourceTree = "<group>"; };
-		5CAF69371C021F8000795AD0 /* AnswersTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswersTableViewCell.xib; sourceTree = "<group>"; };
-		5CAF69391C022A5800795AD0 /* QuizViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizViewController.h; sourceTree = "<group>"; };
-		5CAF693A1C022A5800795AD0 /* QuizViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizViewController.m; sourceTree = "<group>"; };
-		5CB427071C94332300BA16D2 /* ANOggPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANOggPlayer.h; sourceTree = "<group>"; };
-		5CB427081C94332300BA16D2 /* ANOggPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANOggPlayer.m; sourceTree = "<group>"; };
-		5CB4270D1C94388000BA16D2 /* ANOggDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANOggDecoder.h; sourceTree = "<group>"; };
-		5CB4270E1C94388000BA16D2 /* ANOggDecoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ANOggDecoder.mm; sourceTree = "<group>"; };
-		5CB427121C944D9400BA16D2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		5CB427181C944ED600BA16D2 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		5CB427221C95A64D00BA16D2 /* Ogg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ogg.framework; path = EnglishLearning/Frameworks/Ogg.framework; sourceTree = "<group>"; };
-		5CB427231C95A64D00BA16D2 /* Vorbis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vorbis.framework; path = EnglishLearning/Frameworks/Vorbis.framework; sourceTree = "<group>"; };
-		5CB493881C935EB700ED6D65 /* ANPickAudioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANPickAudioController.h; sourceTree = "<group>"; };
-		5CB493891C935EB700ED6D65 /* ANPickAudioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANPickAudioController.m; sourceTree = "<group>"; };
-		5CB4938C1C93617C00ED6D65 /* ANPickAudioCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANPickAudioCell.h; sourceTree = "<group>"; };
-		5CB4938D1C93617C00ED6D65 /* ANPickAudioCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANPickAudioCell.m; sourceTree = "<group>"; };
-		5CC783AE1C025188005AD1E3 /* AnswerButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerButtonCell.h; sourceTree = "<group>"; };
-		5CC783AF1C025188005AD1E3 /* AnswerButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerButtonCell.m; sourceTree = "<group>"; };
-		5CC783B01C025188005AD1E3 /* AnswerButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerButtonCell.xib; sourceTree = "<group>"; };
-		5CDC361E1C0A0D1C00BD21EE /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "User+CoreDataProperties.h"; path = "Models/User/User+CoreDataProperties.h"; sourceTree = "<group>"; };
-		5CDC361F1C0A0D1C00BD21EE /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "User+CoreDataProperties.m"; path = "Models/User/User+CoreDataProperties.m"; sourceTree = "<group>"; };
-		5CDC36201C0A0D1C00BD21EE /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Models/User/User.h; sourceTree = "<group>"; };
-		5CDC36211C0A0D1C00BD21EE /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Models/User/User.m; sourceTree = "<group>"; };
+		5CD383CE1F60230000BD4D1D /* ANCoreDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ANCoreDataManager.h; sourceTree = "<group>"; };
+		5CD383CF1F60230000BD4D1D /* ANCoreDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ANCoreDataManager.m; sourceTree = "<group>"; };
+		5CD383D01F60230000BD4D1D /* ANRequestsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ANRequestsManager.h; sourceTree = "<group>"; };
+		5CD383D11F60230000BD4D1D /* ANRequestsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ANRequestsManager.m; sourceTree = "<group>"; };
+		5CD383D31F60230000BD4D1D /* User+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
+		5CD383D41F60230000BD4D1D /* User+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
+		5CD383D51F60230000BD4D1D /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		5CD383D61F60230000BD4D1D /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		5CD383D81F60230000BD4D1D /* Word+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Word+CoreDataClass.h"; sourceTree = "<group>"; };
+		5CD383D91F60230000BD4D1D /* Word+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Word+CoreDataClass.m"; sourceTree = "<group>"; };
+		5CD383DA1F60230000BD4D1D /* Word+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Word+CoreDataProperties.h"; sourceTree = "<group>"; };
+		5CD383DB1F60230000BD4D1D /* Word+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Word+CoreDataProperties.m"; sourceTree = "<group>"; };
 		5CDC36281C0A0DB600BD21EE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5CDC362A1C0A0DBD00BD21EE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		5CDC362D1C0A113000BD21EE /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		5CDC362E1C0A113000BD21EE /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,41 +161,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CB427241C95A64D00BA16D2 /* Ogg.framework in Frameworks */,
-				5CB427251C95A64D00BA16D2 /* Vorbis.framework in Frameworks */,
-				5CB427191C944ED600BA16D2 /* CoreAudio.framework in Frameworks */,
-				5CB427131C944D9400BA16D2 /* AudioToolbox.framework in Frameworks */,
 				5CDC362B1C0A0DBD00BD21EE /* CoreGraphics.framework in Frameworks */,
 				5CDC36291C0A0DB700BD21EE /* QuartzCore.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5CAF68FA1C00ACB000795AD0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5CAF69051C00ACB000795AD0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5C2AA34C1C10E00E00D87F59 /* WordsListTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				5C2AA3471C10E00700D87F59 /* WordsListTableViewCell.h */,
-				5C2AA3481C10E00700D87F59 /* WordsListTableViewCell.m */,
-			);
-			name = WordsListTableViewCell;
-			sourceTree = "<group>";
-		};
 		5C4388C71C8C5CAB006CFDAE /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,6 +225,57 @@
 			path = "UIKit+AFNetworking";
 			sourceTree = "<group>";
 		};
+		5C8BB1F01F60274C00BDFAD1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5C8BB1F11F60274C00BDFAD1 /* ANEditWordViewController.h */,
+				5C8BB1F21F60274C00BDFAD1 /* ANEditWordViewController.m */,
+				5C8BB1F31F60274C00BDFAD1 /* HomeViewController.h */,
+				5C8BB1F41F60274C00BDFAD1 /* HomeViewController.m */,
+				5C8BB1F51F60274C00BDFAD1 /* QuizViewController.h */,
+				5C8BB1F61F60274C00BDFAD1 /* QuizViewController.m */,
+				5C8BB1F71F60274C00BDFAD1 /* WordsListViewController.h */,
+				5C8BB1F81F60274C00BDFAD1 /* WordsListViewController.m */,
+				5C8BB2221F6027ED00BDFAD1 /* EnglishLearning.xcdatamodeld */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		5C8BB2051F60275B00BDFAD1 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				5C8BB2061F60275B00BDFAD1 /* LaunchScreen.storyboard */,
+				5C8BB2071F60275B00BDFAD1 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		5C8BB2081F60276600BDFAD1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5C8BB2091F60276600BDFAD1 /* EnglishWords.csv */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5C8BB20A1F60278800BDFAD1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5C8BB20B1F60278800BDFAD1 /* AnswerButtonCell.h */,
+				5C8BB20C1F60278800BDFAD1 /* AnswerButtonCell.m */,
+				5C8BB20D1F60278800BDFAD1 /* AnswerButtonCell.xib */,
+				5C8BB20E1F60278800BDFAD1 /* AnswersTableViewCell.h */,
+				5C8BB20F1F60278800BDFAD1 /* AnswersTableViewCell.m */,
+				5C8BB2101F60278800BDFAD1 /* AnswersTableViewCell.xib */,
+				5C8BB2111F60278800BDFAD1 /* WordsListTableViewCell.h */,
+				5C8BB2121F60278800BDFAD1 /* WordsListTableViewCell.m */,
+				5C8BB2131F60278800BDFAD1 /* WordsQuizTopTableViewCell.h */,
+				5C8BB2141F60278800BDFAD1 /* WordsQuizTopTableViewCell.m */,
+				5C8BB2151F60278800BDFAD1 /* WordsQuizTopTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		5CAF68D81C00ACAF00795AD0 = {
 			isa = PBXGroup;
 			children = (
@@ -301,15 +302,13 @@
 			children = (
 				5CAF68E71C00ACAF00795AD0 /* AppDelegate.h */,
 				5CAF68E81C00ACAF00795AD0 /* AppDelegate.m */,
-				5CDC36301C0A12CE00BD21EE /* ViewControllers */,
-				5CAF69311C021EE100795AD0 /* TableViewCell */,
-				5CAF69201C00BEE300795AD0 /* Model */,
-				5CAF68ED1C00ACAF00795AD0 /* Main.storyboard */,
+				5C8BB20A1F60278800BDFAD1 /* Cells */,
+				5C8BB2081F60276600BDFAD1 /* Resources */,
+				5C8BB2051F60275B00BDFAD1 /* Storyboards */,
+				5C8BB1F01F60274C00BDFAD1 /* ViewControllers */,
+				5CD383CD1F60230000BD4D1D /* Models */,
 				5CAF68F31C00ACAF00795AD0 /* Assets.xcassets */,
-				5CAF68F51C00ACAF00795AD0 /* LaunchScreen.storyboard */,
 				5CAF68F81C00ACAF00795AD0 /* Info.plist */,
-				5CAF68F01C00ACAF00795AD0 /* EnglishLearning.xcdatamodeld */,
-				5CAF691C1C00BE6B00795AD0 /* Resources */,
 				5CAF68E41C00ACAF00795AD0 /* Supporting Files */,
 				5C4388C71C8C5CAB006CFDAE /* AFNetworking */,
 			);
@@ -343,166 +342,48 @@
 			path = EnglishLearningUITests;
 			sourceTree = "<group>";
 		};
-		5CAF691C1C00BE6B00795AD0 /* Resources */ = {
+		5CD383CD1F60230000BD4D1D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5C19E3E81C00C3BB0088DE11 /* EnglishWords.csv */,
+				5CD383D21F60230000BD4D1D /* User */,
+				5CD383D71F60230000BD4D1D /* Word */,
+				5CD383CE1F60230000BD4D1D /* ANCoreDataManager.h */,
+				5CD383CF1F60230000BD4D1D /* ANCoreDataManager.m */,
+				5CD383D01F60230000BD4D1D /* ANRequestsManager.h */,
+				5CD383D11F60230000BD4D1D /* ANRequestsManager.m */,
 			);
-			name = Resources;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		5CAF69201C00BEE300795AD0 /* Model */ = {
+		5CD383D21F60230000BD4D1D /* User */ = {
 			isa = PBXGroup;
 			children = (
-				5CAF691D1C00BEDE00795AD0 /* ANCoreDataManager.h */,
-				5CAF691E1C00BEDE00795AD0 /* ANCoreDataManager.m */,
-				5CDC36241C0A0D2900BD21EE /* User */,
-				5CAF69281C00CEEA00795AD0 /* Word */,
-				5C4388FA1C8C5FBD006CFDAE /* ANRequestsManager.h */,
-				5C4388FB1C8C5FBD006CFDAE /* ANRequestsManager.m */,
-				5C77B44C1C8CBCC900EC2148 /* ANWordAudioManager.h */,
-				5C77B44D1C8CBCC900EC2148 /* ANWordAudioManager.m */,
-				5CB4270A1C94332800BA16D2 /* OggPlayer */,
+				5CD383D31F60230000BD4D1D /* User+CoreDataProperties.h */,
+				5CD383D41F60230000BD4D1D /* User+CoreDataProperties.m */,
+				5CD383D51F60230000BD4D1D /* User.h */,
+				5CD383D61F60230000BD4D1D /* User.m */,
 			);
-			name = Model;
+			path = User;
 			sourceTree = "<group>";
 		};
-		5CAF69281C00CEEA00795AD0 /* Word */ = {
+		5CD383D71F60230000BD4D1D /* Word */ = {
 			isa = PBXGroup;
 			children = (
-				5C0F47231C0A0B310053B22F /* Word.h */,
-				5C0F47241C0A0B310053B22F /* Word.m */,
-				5C0F47251C0A0B310053B22F /* Word+CoreDataProperties.h */,
-				5C0F47261C0A0B310053B22F /* Word+CoreDataProperties.m */,
+				5CD383D81F60230000BD4D1D /* Word+CoreDataClass.h */,
+				5CD383D91F60230000BD4D1D /* Word+CoreDataClass.m */,
+				5CD383DA1F60230000BD4D1D /* Word+CoreDataProperties.h */,
+				5CD383DB1F60230000BD4D1D /* Word+CoreDataProperties.m */,
 			);
-			name = Word;
-			sourceTree = "<group>";
-		};
-		5CAF69311C021EE100795AD0 /* TableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				5C2AA34C1C10E00E00D87F59 /* WordsListTableViewCell */,
-				5CAF69321C021EF800795AD0 /* TopQuizCell */,
-				5CAF69361C021F5500795AD0 /* AnswersTableViewCell */,
-				5CC783B31C02518C005AD1E3 /* AnswerButtonCell */,
-			);
-			name = TableViewCell;
-			sourceTree = "<group>";
-		};
-		5CAF69321C021EF800795AD0 /* TopQuizCell */ = {
-			isa = PBXGroup;
-			children = (
-				5CAF692C1C021EDC00795AD0 /* WordsQuizTopTableViewCell.h */,
-				5CAF692D1C021EDC00795AD0 /* WordsQuizTopTableViewCell.m */,
-				5CAF692E1C021EDC00795AD0 /* WordsQuizTopTableViewCell.xib */,
-			);
-			name = TopQuizCell;
-			sourceTree = "<group>";
-		};
-		5CAF69361C021F5500795AD0 /* AnswersTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				5CAF69331C021F4F00795AD0 /* AnswersTableViewCell.h */,
-				5CAF69341C021F4F00795AD0 /* AnswersTableViewCell.m */,
-				5CAF69371C021F8000795AD0 /* AnswersTableViewCell.xib */,
-			);
-			name = AnswersTableViewCell;
-			sourceTree = "<group>";
-		};
-		5CB4270A1C94332800BA16D2 /* OggPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				5CB427101C94388300BA16D2 /* Decoder */,
-				5CB427111C94388B00BA16D2 /* Player */,
-			);
-			name = OggPlayer;
-			sourceTree = "<group>";
-		};
-		5CB427101C94388300BA16D2 /* Decoder */ = {
-			isa = PBXGroup;
-			children = (
-				5CB4270D1C94388000BA16D2 /* ANOggDecoder.h */,
-				5CB4270E1C94388000BA16D2 /* ANOggDecoder.mm */,
-			);
-			name = Decoder;
-			sourceTree = "<group>";
-		};
-		5CB427111C94388B00BA16D2 /* Player */ = {
-			isa = PBXGroup;
-			children = (
-				5CB427071C94332300BA16D2 /* ANOggPlayer.h */,
-				5CB427081C94332300BA16D2 /* ANOggPlayer.m */,
-			);
-			name = Player;
-			sourceTree = "<group>";
-		};
-		5CB4938B1C93615C00ED6D65 /* Pick Audio Controller */ = {
-			isa = PBXGroup;
-			children = (
-				5CB4938F1C93632D00ED6D65 /* Cells */,
-				5CB493881C935EB700ED6D65 /* ANPickAudioController.h */,
-				5CB493891C935EB700ED6D65 /* ANPickAudioController.m */,
-			);
-			name = "Pick Audio Controller";
-			sourceTree = "<group>";
-		};
-		5CB4938F1C93632D00ED6D65 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				5CB4938C1C93617C00ED6D65 /* ANPickAudioCell.h */,
-				5CB4938D1C93617C00ED6D65 /* ANPickAudioCell.m */,
-			);
-			name = Cells;
-			sourceTree = "<group>";
-		};
-		5CC783B31C02518C005AD1E3 /* AnswerButtonCell */ = {
-			isa = PBXGroup;
-			children = (
-				5CC783AE1C025188005AD1E3 /* AnswerButtonCell.h */,
-				5CC783AF1C025188005AD1E3 /* AnswerButtonCell.m */,
-				5CC783B01C025188005AD1E3 /* AnswerButtonCell.xib */,
-			);
-			name = AnswerButtonCell;
-			sourceTree = "<group>";
-		};
-		5CDC36241C0A0D2900BD21EE /* User */ = {
-			isa = PBXGroup;
-			children = (
-				5CDC361E1C0A0D1C00BD21EE /* User+CoreDataProperties.h */,
-				5CDC361F1C0A0D1C00BD21EE /* User+CoreDataProperties.m */,
-				5CDC36201C0A0D1C00BD21EE /* User.h */,
-				5CDC36211C0A0D1C00BD21EE /* User.m */,
-			);
-			name = User;
+			path = Word;
 			sourceTree = "<group>";
 		};
 		5CDC362C1C0A0DC300BD21EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5CB427221C95A64D00BA16D2 /* Ogg.framework */,
-				5CB427231C95A64D00BA16D2 /* Vorbis.framework */,
-				5CB427181C944ED600BA16D2 /* CoreAudio.framework */,
-				5CB427121C944D9400BA16D2 /* AudioToolbox.framework */,
 				5CDC362A1C0A0DBD00BD21EE /* CoreGraphics.framework */,
 				5CDC36281C0A0DB600BD21EE /* QuartzCore.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		5CDC36301C0A12CE00BD21EE /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				5CDC362D1C0A113000BD21EE /* HomeViewController.h */,
-				5CDC362E1C0A113000BD21EE /* HomeViewController.m */,
-				5CAF69391C022A5800795AD0 /* QuizViewController.h */,
-				5CAF693A1C022A5800795AD0 /* QuizViewController.m */,
-				5CAF68EA1C00ACAF00795AD0 /* WordsListViewController.h */,
-				5CAF68EB1C00ACAF00795AD0 /* WordsListViewController.m */,
-				5C5957D91C53E945003A1C86 /* ANEditWordViewController.h */,
-				5C5957DA1C53E945003A1C86 /* ANEditWordViewController.m */,
-				5CB4938B1C93615C00ED6D65 /* Pick Audio Controller */,
-			);
-			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -530,7 +411,6 @@
 			buildConfigurationList = 5CAF69141C00ACB000795AD0 /* Build configuration list for PBXNativeTarget "EnglishLearningTests" */;
 			buildPhases = (
 				5CAF68F91C00ACB000795AD0 /* Sources */,
-				5CAF68FA1C00ACB000795AD0 /* Frameworks */,
 				5CAF68FB1C00ACB000795AD0 /* Resources */,
 			);
 			buildRules = (
@@ -548,7 +428,6 @@
 			buildConfigurationList = 5CAF69171C00ACB000795AD0 /* Build configuration list for PBXNativeTarget "EnglishLearningUITests" */;
 			buildPhases = (
 				5CAF69041C00ACB000795AD0 /* Sources */,
-				5CAF69051C00ACB000795AD0 /* Frameworks */,
 				5CAF69061C00ACB000795AD0 /* Resources */,
 			);
 			buildRules = (
@@ -568,7 +447,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = AN;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = azhuk;
 				TargetAttributes = {
 					5CAF68E01C00ACAF00795AD0 = {
@@ -610,13 +489,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CAF68F71C00ACAF00795AD0 /* LaunchScreen.storyboard in Resources */,
+				5C8BB2291F6027FE00BDFAD1 /* Main.storyboard in Resources */,
+				5C8BB21D1F6027D500BDFAD1 /* EnglishWords.csv in Resources */,
+				5C8BB21C1F6027AD00BDFAD1 /* WordsQuizTopTableViewCell.xib in Resources */,
+				5C8BB2191F6027AD00BDFAD1 /* AnswersTableViewCell.xib in Resources */,
+				5C8BB2281F6027FE00BDFAD1 /* LaunchScreen.storyboard in Resources */,
 				5CAF68F41C00ACAF00795AD0 /* Assets.xcassets in Resources */,
-				5CAF68EF1C00ACAF00795AD0 /* Main.storyboard in Resources */,
-				5CAF69381C021F8000795AD0 /* AnswersTableViewCell.xib in Resources */,
-				5CAF69211C00C86000795AD0 /* EnglishWords.csv in Resources */,
-				5CAF69301C021EDC00795AD0 /* WordsQuizTopTableViewCell.xib in Resources */,
-				5CC783B21C025188005AD1E3 /* AnswerButtonCell.xib in Resources */,
+				5C8BB2181F6027AD00BDFAD1 /* AnswerButtonCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,43 +520,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CDC36231C0A0D1C00BD21EE /* User.m in Sources */,
-				5CB4270F1C94388000BA16D2 /* ANOggDecoder.mm in Sources */,
-				5CAF68EC1C00ACAF00795AD0 /* WordsListViewController.m in Sources */,
+				5CD383E01F6023A700BD4D1D /* Word+CoreDataClass.m in Sources */,
 				5C4388F81C8C5CAB006CFDAE /* UIRefreshControl+AFNetworking.m in Sources */,
 				5C4388F51C8C5CAB006CFDAE /* UIButton+AFNetworking.m in Sources */,
-				5CAF693B1C022A5800795AD0 /* QuizViewController.m in Sources */,
-				5C2AA34A1C10E00700D87F59 /* WordsListTableViewCell.m in Sources */,
+				5C8BB21A1F6027AD00BDFAD1 /* WordsListTableViewCell.m in Sources */,
+				5CD383DC1F60238700BD4D1D /* ANCoreDataManager.m in Sources */,
 				5CAF68E91C00ACAF00795AD0 /* AppDelegate.m in Sources */,
-				5CAF68F21C00ACAF00795AD0 /* EnglishLearning.xcdatamodeld in Sources */,
-				5C5957DB1C53E945003A1C86 /* ANEditWordViewController.m in Sources */,
+				5C8BB21F1F6027E000BDFAD1 /* HomeViewController.m in Sources */,
 				5C4388F11C8C5CAB006CFDAE /* AFAutoPurgingImageCache.m in Sources */,
+				5CD383E11F6023A900BD4D1D /* Word+CoreDataProperties.m in Sources */,
+				5C8BB21B1F6027AD00BDFAD1 /* WordsQuizTopTableViewCell.m in Sources */,
 				5C4388EE1C8C5CAB006CFDAE /* AFURLRequestSerialization.m in Sources */,
-				5CDC362F1C0A113000BD21EE /* HomeViewController.m in Sources */,
+				5C8BB2211F6027E000BDFAD1 /* WordsListViewController.m in Sources */,
+				5C8BB2201F6027E000BDFAD1 /* QuizViewController.m in Sources */,
+				5C8BB2171F60279400BDFAD1 /* AnswersTableViewCell.m in Sources */,
+				5C8BB2251F6027F000BDFAD1 /* EnglishLearning.xcdatamodeld in Sources */,
 				5C4388F71C8C5CAB006CFDAE /* UIProgressView+AFNetworking.m in Sources */,
-				5CB427091C94332300BA16D2 /* ANOggPlayer.m in Sources */,
+				5C8BB2161F60279200BDFAD1 /* AnswerButtonCell.m in Sources */,
 				5C4388ED1C8C5CAB006CFDAE /* AFSecurityPolicy.m in Sources */,
+				5CD383DE1F60239400BD4D1D /* User+CoreDataProperties.m in Sources */,
 				5CAF68E61C00ACAF00795AD0 /* main.m in Sources */,
 				5C4388F41C8C5CAB006CFDAE /* UIActivityIndicatorView+AFNetworking.m in Sources */,
-				5C0F47271C0A0B310053B22F /* Word.m in Sources */,
-				5CB4938E1C93617C00ED6D65 /* ANPickAudioCell.m in Sources */,
 				5C4388EC1C8C5CAB006CFDAE /* AFNetworkReachabilityManager.m in Sources */,
-				5CDC36221C0A0D1C00BD21EE /* User+CoreDataProperties.m in Sources */,
-				5CAF692F1C021EDC00795AD0 /* WordsQuizTopTableViewCell.m in Sources */,
 				5C4388F01C8C5CAB006CFDAE /* AFURLSessionManager.m in Sources */,
+				5CD383DF1F60239700BD4D1D /* User.m in Sources */,
 				5C4388F61C8C5CAB006CFDAE /* UIImageView+AFNetworking.m in Sources */,
-				5CAF69351C021F4F00795AD0 /* AnswersTableViewCell.m in Sources */,
-				5C4388FC1C8C5FBD006CFDAE /* ANRequestsManager.m in Sources */,
-				5C0F47281C0A0B310053B22F /* Word+CoreDataProperties.m in Sources */,
-				5CAF691F1C00BEDE00795AD0 /* ANCoreDataManager.m in Sources */,
+				5C8BB21E1F6027E000BDFAD1 /* ANEditWordViewController.m in Sources */,
+				5CD383DD1F60238C00BD4D1D /* ANRequestsManager.m in Sources */,
 				5C4388EB1C8C5CAB006CFDAE /* AFHTTPSessionManager.m in Sources */,
 				5C4388EF1C8C5CAB006CFDAE /* AFURLResponseSerialization.m in Sources */,
-				5CC783B11C025188005AD1E3 /* AnswerButtonCell.m in Sources */,
 				5C4388F91C8C5CAB006CFDAE /* UIWebView+AFNetworking.m in Sources */,
-				5CB4938A1C935EB700ED6D65 /* ANPickAudioController.m in Sources */,
 				5C4388F21C8C5CAB006CFDAE /* AFImageDownloader.m in Sources */,
 				5C4388F31C8C5CAB006CFDAE /* AFNetworkActivityIndicatorManager.m in Sources */,
-				5C77B44E1C8CBCC900EC2148 /* ANWordAudioManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,25 +586,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		5CAF68ED1C00ACAF00795AD0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5CAF68EE1C00ACAF00795AD0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		5CAF68F51C00ACAF00795AD0 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5CAF68F61C00ACAF00795AD0 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		5C18D98F1C9AC0F300389F3C /* UITests */ = {
 			isa = XCBuildConfiguration;
@@ -740,13 +595,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -786,17 +649,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = X2AQQ3DS83;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/EnglishLearning/Frameworks",
-				);
 				GCC_PREFIX_HEADER = EnglishLearning/PrefixHeader.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				"GCC_WARN_64_TO_32_BIT_CONVERSION[arch=*64]" = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				INFOPLIST_FILE = EnglishLearning/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.azhuk.EnglishLearning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -838,13 +698,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -853,7 +721,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = NO;
@@ -883,13 +751,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -923,17 +799,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = X2AQQ3DS83;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/EnglishLearning/Frameworks",
-				);
 				GCC_PREFIX_HEADER = EnglishLearning/PrefixHeader.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				"GCC_WARN_64_TO_32_BIT_CONVERSION[arch=*64]" = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				INFOPLIST_FILE = EnglishLearning/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.azhuk.EnglishLearning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -950,16 +823,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = X2AQQ3DS83;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/EnglishLearning/Frameworks",
-				);
 				GCC_PREFIX_HEADER = EnglishLearning/PrefixHeader.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				INFOPLIST_FILE = EnglishLearning/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_BUNDLE_IDENTIFIER = com.azhuk.EnglishLearning;
@@ -1066,14 +936,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		5CAF68F01C00ACAF00795AD0 /* EnglishLearning.xcdatamodeld */ = {
+		5C8BB2221F6027ED00BDFAD1 /* EnglishLearning.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				5CA0E6B21C73731B00BD23BD /* EnglishLearning_2.xcdatamodel */,
-				5CAF68F11C00ACAF00795AD0 /* EnglishLearning.xcdatamodel */,
+				5C8BB2231F6027ED00BDFAD1 /* EnglishLearning.xcdatamodel */,
+				5C8BB2241F6027ED00BDFAD1 /* EnglishLearning_2.xcdatamodel */,
 			);
-			currentVersion = 5CA0E6B21C73731B00BD23BD /* EnglishLearning_2.xcdatamodel */;
-			path = EnglishLearning.xcdatamodeld;
+			currentVersion = 5C8BB2241F6027ED00BDFAD1 /* EnglishLearning_2.xcdatamodel */;
+			name = EnglishLearning.xcdatamodeld;
+			path = ../Models/EnglishLearning.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
