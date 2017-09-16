@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "ANCoreDataManager.h"
 #import "HomeViewController.h"
-#import "ANRequestsManager.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong, readwrite) ANCoreDataManager* model;

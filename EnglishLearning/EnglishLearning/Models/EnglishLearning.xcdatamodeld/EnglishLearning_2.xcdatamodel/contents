@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13233.4" systemVersion="16G29" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G29" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="TranslatedWord" syncable="YES">
+        <attribute name="word" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="originalWord" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TranslatedWord" inverseName="originalWord" inverseEntity="TranslatedWord" syncable="YES"/>
+    </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="words" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Word" inverseName="user" inverseEntity="Word" syncable="YES"/>
@@ -12,10 +16,12 @@
         <attribute name="totalAnswers" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="transcription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="translation" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="translations" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TranslatedWord" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="words" inverseEntity="User" syncable="YES"/>
     </entity>
     <elements>
         <element name="User" positionX="0" positionY="0" width="128" height="75"/>
-        <element name="Word" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="Word" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="TranslatedWord" positionX="9" positionY="72" width="128" height="75"/>
     </elements>
 </model>

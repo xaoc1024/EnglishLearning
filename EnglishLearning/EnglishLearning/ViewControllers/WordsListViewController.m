@@ -265,7 +265,7 @@ static NSString* const kANManageWordViewControllerSegueIdentifier = @"EditWordVi
 
     if (searchString.length > 0)
     {
-        predicate = [NSPredicate predicateWithFormat:@"originalWord CONTAINS[cd] %@ OR translatedWord CONTAINS[cd] %@", searchString, searchString];
+        predicate = [NSPredicate predicateWithFormat:@"originalWord CONTAINS[cd] %@ OR translation CONTAINS[cd] %@", searchString, searchString];
     }
 
     self.fetchResultController.fetchRequest.predicate = predicate;

@@ -9,7 +9,7 @@
 #import "ANCoreDataManager.h"
 #import "Word+CoreDataClass.h"
 #import "User.h"
-#import "AFNetworking.h"
+#import "Words-Swift.h"
 
 static NSString* const kANFirstLaunch = @"kANFirstLaunch";
 
@@ -182,64 +182,15 @@ static NSString* const kANFirstLaunch = @"kANFirstLaunch";
 {
     NSError* error = nil;
     
-    NSString *csvFileString= [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"EnglishWords" withExtension:@"csv"] encoding:NSUTF8StringEncoding  error:&error];
-    
-    NSArray *allLines = [csvFileString componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    NSString *csvFileString = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"3000_Words" withExtension:@"csv"] encoding:NSUTF8StringEncoding  error:&error];
 
-    NSFetchRequest* wordsRequest = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
+    NSArray *allLines = [csvFileString componentsSeparatedByString:@"\n"];
 
-    NSMutableSet* allWords = [NSMutableSet setWithArray:[self.managedObjectContext executeFetchRequest:wordsRequest error:&error]];
-    
-     for (NSString* line in allLines)
-    {
-        if (line.length == 0)
-        {
-            continue;
-        }
-        
-        NSArray *elements = [line componentsSeparatedByString:@";"];
-        
-        NSString* originalWord = elements[1]; //original word
-        
-        __block Word* word = nil;
-        if (originalWord.length > 0)
-        {
-            [allWords enumerateObjectsUsingBlock:^(id object, BOOL* stop) {
-                Word* wordObject = object;
-                
-                if ([wordObject.originalWord isEqualToString:originalWord])
-                {
-                    word = wordObject;
-                    *stop = YES;
-                }
-            }];
-            
-            if (word == nil)
-            {
-                word = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Word class]) inManagedObjectContext:self.managedObjectContext];
-            }
-            else
-            {
-                [allWords removeObject:word];
-            }
-            
-            word.identifier = elements[0];
-            
-            word.originalWord = [originalWord stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            
-            word.transcription = [elements[2] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            
-            word.translation = [elements[3] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            
-            word.user = self.user;
-        }
-    }
-    
-    [allWords enumerateObjectsUsingBlock:^(id object, BOOL* stop) {
-        [self.managedObjectContext deleteObject:object];
-    }];
-    
-    [self saveContext];
+	if (allLines.count > 0)
+	{
+		WordsFileParser * wordsParser = [[WordsFileParser alloc] initWithManagedObjectContext:self.managedObjectContext];
+		[wordsParser parseWordsRecords:allLines];
+	}
 }
 
 
